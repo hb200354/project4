@@ -1,0 +1,57 @@
+/* =========================
+   🌞 Summer Page Only
+   ========================= */
+body.summer-page {
+  background-color: #f5fbff;
+  color: #222;
+  line-height: 1.6;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* 공통 섹션 여백 */
+.summer-page section {
+  padding: 80px 0;
+}
+
+/* =========================
+   🌞 Hero Section
+   ========================= */
+.summer-page .summer-hero {
+  height: 85vh;
+  background:
+    linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
+    url("../assets/images/summer/summer-main.jpg") center / cover no-repeat;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.summer-page .hero-text h1 {
+  font-size: 48px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+.summer-page .hero-text p {
+  font-size: 18px;
+  color: #e0f7ff;
+}
+
+/* =========================
+   🌊 Theme Section
+   ========================= */
+.summer-page .summer-theme h2,
+.summer-page .summer-spot h2,
+.summer-page .summer-tip h2 {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+
+.summer-page .theme-list {
+  display: grid;
+  gri
