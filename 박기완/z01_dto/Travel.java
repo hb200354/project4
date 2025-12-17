@@ -9,19 +9,20 @@ public class Travel {
     private String description;
     private String address;
     private int month;
+    private String fileName;
     private Date regDate;
 	public Travel() {
 		// TODO Auto-generated constructor stub
 	}
 	public Travel(int travelId, String travelName, String region, String description, String address, int month,
-			Date regDate) {
-		super();
+			String fileName, Date regDate) {
 		this.travelId = travelId;
 		this.travelName = travelName;
 		this.region = region;
 		this.description = description;
 		this.address = address;
 		this.month = month;
+		this.fileName = fileName;
 		this.regDate = regDate;
 	}
 	public int getTravelId() {
@@ -59,6 +60,12 @@ public class Travel {
 	}
 	public void setMonth(int month) {
 		this.month = month;
+	}
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 	public Date getRegDate() {
 		return regDate;
