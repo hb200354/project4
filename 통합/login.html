@@ -51,7 +51,7 @@
             <form id="loginForm">
               <div class="mb-4">
                 <label class="form-label">아이디 *</label>
-                <input type="text" class="form-control" placeholder="아이디 입력" required>
+                <input type="text" id="userId" class="form-control" placeholder="아이디 입력" required>
               </div>
 
               <div class="mb-4">
@@ -86,9 +86,20 @@
 <script>
 document.getElementById("loginForm").addEventListener("submit", e => {
   e.preventDefault();
-  alert("로그인 동작 확인 완료 ✅");
+
+  // 🔑 임시 로그인 처리
+  const userId = document.querySelector('input[type="text"]').value;
+
+  // 로그인 상태 저장
+  localStorage.setItem("loginUser", userId);
+
+  // 메인으로 이동
+  location.href = "index.html";
 });
 </script>
+
+
+
 
 </body>
 </html>
