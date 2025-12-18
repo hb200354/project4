@@ -10824,3 +10824,28 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+/* =========================
+   🌍 Season Common Header
+   ========================= */
+.season-header {
+  background: #ffffff;
+  border-bottom: 1px solid #e6eef5;
+}
+
+.season-header .container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.season-header h1 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.season-header p {
+  font-size: 16px;
+  color: #555;
+}
