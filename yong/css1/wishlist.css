@@ -1,0 +1,172 @@
+:root{
+  --bg:#f6f8fb; --surface:#ffffff; --text:#0f172a; --muted:#64748b;
+  --line: rgba(15,23,42,.10);
+  --accent:#0ea5e9; --accent2:#22c55e;
+  --danger:#ef4444;
+  --shadow: 0 14px 38px rgba(2,6,23,.10);
+}
+
+*{ box-sizing:border-box; }
+body{
+  margin:0;
+  font-family: system-ui,-apple-system,"Segoe UI","Noto Sans KR",sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(900px 520px at 18% -10%, rgba(14,165,233,.12), transparent 60%),
+    radial-gradient(900px 520px at 92% 0%, rgba(34,197,94,.08), transparent 55%),
+    var(--bg);
+}
+a{ color:inherit; text-decoration:none; }
+button{ font-family:inherit; }
+.container{ width:min(1120px, 92%); margin:0 auto; }
+
+/* ===== Common Navbar (same structure) ===== */
+.navbar{
+  position:sticky; top:0; z-index:20;
+  background: rgba(255,255,255,.78);
+  backdrop-filter: blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{
+  height:70px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+}
+.brand{
+  display:flex; align-items:center; gap:10px;
+  font-weight:900;
+}
+.mark{
+  width:34px; height:34px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  box-shadow: 0 10px 18px rgba(14,165,233,.18);
+}
+.brand-text{ display:flex; flex-direction:column; line-height:1.1; }
+.title{ font-size:16px; }
+.sub{ font-size:12px; color:var(--muted); font-weight:800; }
+
+.nav-center{
+  display:flex; align-items:center; gap:10px;
+  padding:6px;
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.70);
+  border-radius: 999px;
+}
+.nav-center a{
+  padding:10px 14px;
+  border-radius:999px;
+  font-size:14px;
+  font-weight:800;
+  color:var(--muted);
+}
+.nav-center a:hover{
+  background: rgba(14,165,233,.10);
+  color:var(--text);
+}
+
+.nav-right{ display:flex; gap:10px; align-items:center; }
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:10px 14px;
+  border-radius: 999px;
+  background: #111827;
+  color:#fff;
+  border:1px solid rgba(0,0,0,0);
+  font-weight:900;
+  font-size:14px;
+}
+.ghost{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:10px 14px;
+  border-radius: 999px;
+  background: transparent;
+  border:1px solid var(--line);
+  color: var(--text);
+  font-weight:900;
+  font-size:14px;
+}
+
+.small{ padding:8px 10px; font-size:13px; border-radius:14px; }
+
+/* wishlist buttons */
+.danger{
+  display:inline-flex; align-items:center; justify-content:center;
+  background: rgba(239,68,68,.10);
+  border:1px solid rgba(239,68,68,.22);
+  color:#991b1b;
+  font-weight:900;
+  cursor:pointer;
+}
+
+/* ===== Page ===== */
+.page{ padding:22px 0 60px; }
+
+.hero{
+  margin-top:18px;
+  background: var(--surface);
+  border:1px solid var(--line);
+  border-radius: 26px;
+  box-shadow: var(--shadow);
+  padding: 22px;
+}
+.hero h1{ margin:0 0 8px; font-size:28px; }
+.hero p{ margin:0; color:var(--muted); font-weight:700; }
+
+.section{
+  margin-top:16px;
+  background: var(--surface);
+  border:1px solid var(--line);
+  border-radius: 26px;
+  box-shadow: var(--shadow);
+  padding: 18px;
+}
+
+.wish-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:12px;
+}
+.count{ font-weight:900; }
+.hint{ color:var(--muted); font-weight:700; font-size:13px; }
+
+.wish-list{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+/* 설계서 느낌: 이미지 / 이름 / 상세 / 삭제 */
+.wish-row{
+  display:grid;
+  grid-template-columns: 240px 1fr 110px 90px;
+  gap:12px;
+  align-items:center;
+  padding:12px;
+  border:1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255,255,255,.85);
+}
+.thumb{
+  height:56px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #e0f2fe, #dcfce7);
+  border:1px dashed rgba(15,23,42,.18);
+  display:flex; align-items:center; justify-content:center;
+  font-weight:900;
+  color: rgba(15,23,42,.45);
+}
+.name{ font-weight:900; }
+
+@media (max-width: 900px){
+  .wish-row{ grid-template-columns: 1fr; }
+  .thumb{ height:120px; }
+}
+@media (max-width: 620px){
+  .nav-inner{ flex-wrap:wrap; height:auto; padding:12px 0; }
+  .nav-center{ width:100%; justify-content:flex-start; overflow:auto; }
+}
