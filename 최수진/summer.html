@@ -55,11 +55,7 @@
           <div class="small text-muted">SUMMER PICK</div>
           <h2 id="featuredTitle"></h2>
           <p id="featuredDesc"></p>
-
-          <!-- ✅ 대표 자세히 보기 -->
-          <a id="featuredLink" class="btn btn-primary btn-sm mt-2">
-            자세히 보기 →
-          </a>
+          <a id="featuredLink" class="btn btn-primary btn-sm mt-2">자세히 보기 →</a>
         </div>
       </div>
 
@@ -70,7 +66,6 @@
     <!-- 사이드바 -->
     <div class="col-lg-4">
 
-      <!-- 검색 -->
       <div class="card mb-4">
         <div class="card-header">여행지 검색</div>
         <div class="card-body">
@@ -79,7 +74,6 @@
         </div>
       </div>
 
-      <!-- 테마 -->
       <div class="card mb-4">
         <div class="card-header">여름 여행 테마</div>
         <div class="card-body">
@@ -92,7 +86,6 @@
         </div>
       </div>
 
-      <!-- 한 줄 팁 -->
       <div class="card mb-4">
         <div class="card-header">여름 여행 한 줄 팁</div>
         <div class="card-body" id="tipBox"></div>
@@ -102,13 +95,9 @@
   </div>
 </div>
 
-<!-- JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-/* ======================
-   여름 데이터
-====================== */
 const summerData = {
   6: {
     featured: {
@@ -117,53 +106,56 @@ const summerData = {
       desc: "초여름에 가장 잘 어울리는 바다 여행지"
     },
     tip: "6월은 습도가 낮아 여행하기 쾌적한 시기입니다 ☀️",
-      list: [
-     { id: 1, title: "부산 해운대", img: "assets/images/summer1.jpg", desc: "여름 대표 해변" },
-     { id: 2, title: "평창 흥정계곡", img: "assets/images/summer2.jpg", desc: "시원한 계곡" },
-     { id: 4, title: "제주 협재해변", img: "assets/images/summer4.jpg", desc: "에메랄드빛 바다" },
-     { id: 5, title: "한강 야경", img: "assets/images/summer4.jpg", desc: "밤 산책" }
-]
+    list: [
+      { id: 1, title: "부산 해운대", img: "assets/images/summer1.jpg", desc: "여름 대표 해변" },
+      { id: 2, title: "평창 흥정계곡", img: "assets/images/summer2.jpg", desc: "시원한 계곡" },
+      { id: 3, title: "제주 협재해변", img: "assets/images/summer4.jpg", desc: "에메랄드빛 바다" },
+      { id: 4, title: "한강 야경", img: "assets/images/summer4.jpg", desc: "밤 산책" }
+    ]
   },
 
   7: {
     featured: {
-      img: "assets/images/summer3.jpg",
-      title: "부산 광안리",
-      desc: "한여름 밤, 가장 빛나는 바다"
+      img: "최수진/Imgs/July1.jpg",
+      title: "포천 허브아일랜드",
+      desc: "여름 밤이 더 아름다운 베네치아존"
     },
     tip: "7월에는 밤 여행 코스를 추천해요 🌙",
     list: [
-      { id: 3, title: "부산 광안리", img: "assets/images/summer3.jpg", desc: "야경 명소" },
-      { id: 4, title: "제주 협재해변", img: "assets/images/summer4.jpg", desc: "에메랄드빛 바다" }
+      { id: 1, title: "여름 바다", img: "최수진/Imgs/July1.jpg", desc: "한여름 바다 풍경" },
+      { id: 2, title: "청량한 해안", img: "최수진/Imgs/July2.jpg", desc: "푸른 바다와 절벽" },
+      { id: 3, title: "숲속 계곡", img: "최수진/Imgs/July3.jpg", desc: "자연 속 힐링" },
+      { id: 4, title: "여름 하늘", img: "최수진/Imgs/July4.jpg", desc: "탁 트인 풍경" },
+     
     ]
   },
 
   8: {
     featured: {
-      img: "assets/images/summer4.jpg",
-      title: "한강 야경",
-      desc: "늦여름 밤, 도심 속 산책"
+      img: "최수진/Imgs/August1.jpg",
+      title: "파주 퍼스트가든",
+      desc: "늦여름에 즐기는 정원 산책"
     },
-    tip: "8월은 평일 여행이 좋아요 🍃",
+    tip: "8월은 조용한 힐링 여행이 좋아요 🍃",
     list: [
-      { id: 5, title: "한강 야경", img: "assets/images/summer4.jpg", desc: "밤 산책" },
-      { id: 6, title: "흥정계곡", img: "assets/images/summer2.jpg", desc: "여름 마무리" }
+      { id: 1, title: "꽃 정원", img: "최수진/Imgs/August1.jpg", desc: "여름 꽃 가득" },
+      { id: 2, title: "초록 숲길", img: "최수진/Imgs/August2.jpg", desc: "자연 산책" },
+      { id: 3, title: "감성 마을", img: "최수진/Imgs/August3.jpg", desc: "동화 같은 풍경" },
+      { id: 4, title: "자연 조형물", img: "최수진/Imgs/August4.jpg", desc: "고요한 공간" },
+     
     ]
   }
 };
 
 let currentMonth = 6;
 
-const featuredImg   = document.getElementById("featuredImg");
+const featuredImg = document.getElementById("featuredImg");
 const featuredTitle = document.getElementById("featuredTitle");
-const featuredDesc  = document.getElementById("featuredDesc");
-const featuredLink  = document.getElementById("featuredLink");
-const placeList     = document.getElementById("placeList");
-const searchInput   = document.getElementById("searchInput");
-const searchBtn     = document.getElementById("searchBtn");
-const tipBox        = document.getElementById("tipBox");
+const featuredDesc = document.getElementById("featuredDesc");
+const featuredLink = document.getElementById("featuredLink");
+const placeList = document.getElementById("placeList");
+const tipBox = document.getElementById("tipBox");
 
-/* 렌더링 */
 function renderMonth(month) {
   currentMonth = month;
   const data = summerData[month];
@@ -172,9 +164,6 @@ function renderMonth(month) {
   featuredTitle.innerText = data.featured.title;
   featuredDesc.innerText = data.featured.desc;
   tipBox.innerText = data.tip;
-
-  featuredLink.href =
-    "detail.html?title=" + encodeURIComponent(data.featured.title);
 
   renderList(data.list);
 }
@@ -189,12 +178,7 @@ function renderList(list) {
           <div class="card-body">
             <h5>${p.title}</h5>
             <p>${p.desc}</p>
-
-            <!-- ✅ 자세히 보기 -->
-            <a href="detail.html?id=${p.id}"
-               class="btn btn-primary btn-sm">
-              자세히 보기 →
-            </a>
+            <a href="#" class="btn btn-primary btn-sm">자세히 보기 →</a>
           </div>
         </div>
       </div>
@@ -202,7 +186,6 @@ function renderList(list) {
   });
 }
 
-/* 월 버튼 */
 document.querySelectorAll(".btn-month").forEach(btn => {
   btn.onclick = () => {
     document.querySelectorAll(".btn-month").forEach(b =>
@@ -213,16 +196,6 @@ document.querySelectorAll(".btn-month").forEach(btn => {
   };
 });
 
-/* 검색 */
-searchBtn.onclick = () => {
-  const keyword = searchInput.value.trim();
-  const filtered = summerData[currentMonth].list.filter(p =>
-    p.title.includes(keyword)
-  );
-  renderList(filtered);
-};
-
-/* 초기 */
 renderMonth(6);
 </script>
 
