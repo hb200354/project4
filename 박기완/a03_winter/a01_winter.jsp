@@ -1,12 +1,26 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"
+    import="java.util.*"
+    %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="path" value="${pageContext.request.contextPath }"/>
+<fmt:requestEncoding value="UTF-8"/> 
 <!DOCTYPE html>
-<html lang="ko">
+<%--
+
+
+ --%>
+<html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta charset="UTF-8">
     <title>가을 여행지 - 4계절 여행</title>
 
-    <!-- Bootstrap CSS -->
-    <link href="../css/styles.css" rel="stylesheet">
+	<!-- Bootstrap -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	
+	<!-- 공통 CSS -->
+	<link href="${path}/css/styles.css" rel="stylesheet">
 
 </head>
 <body>
@@ -20,10 +34,10 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link active" href="fall.html">가을 여행</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">겨울 여행</a></li>
-                <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+		        <li class="nav-item"><a class="nav-link" href="${path}/spring">봄</a></li>
+		        <li class="nav-item"><a class="nav-link" href="${path}/summer">여름</a></li>
+		        <li class="nav-item"><a class="nav-link" href="${path}/fall">가을</a></li>
+		        <li class="nav-item"><a class="nav-link active" href="${path}/winter">겨울</a></li>
             </ul>
         </div>
     </div>
@@ -33,9 +47,9 @@
 <header class="py-5 bg-light border-bottom mb-4">
     <div class="container">
         <div class="text-center my-5">
-            <h1 class="fw-bolder">가을에 떠나기 좋은 여행지</h1>
+            <h1 class="fw-bolder">겨울에 떠나기 좋은 여행지</h1>
             <p class="lead mb-0">
-                단풍, 트레킹, 감성 여행이 가장 빛나는 계절 (9~11월)
+                눈꽃과 온천이 있어 가장 신나는 계절 (12~1월)
             </p>
         </div>
     </div>
@@ -50,13 +64,13 @@
 
             <!-- Featured travel -->
             <div class="card mb-4">
-                <a href="#"><img class="card-img-top" src="../assets/images/fall-main.jpg" alt="가을 여행 메인" /></a>
+                <a href="#"><img class="card-img-top" src="${path}/imgs/winter-main.jpg" alt="겨울 여행 메인" /></a>
                 <div class="card-body">
                     <div class="small text-muted">AUTUMN PICK</div>
-                    <h2 class="card-title">내장산 국립공원</h2>
+                    <h2 class="card-title">서울 강서 한강공원</h2>
                     <p class="card-text">
-                        전국 최고의 단풍 명소로 꼽히는 내장산.
-                        가을에 가장 아름다운 풍경을 만날 수 있는 대표 여행지입니다.
+                        강서구에 위치한 강서한강공원.
+                        겨울철 철새 도래지라 망원경으로 다양한 새들을 관찰할 수 있답니다.
                     </p>
                     <a class="btn btn-primary" href="#">자세히 보기 →</a>
                 </div>
@@ -67,26 +81,26 @@
                 <div class="col-lg-6">
 
                     <div class="card mb-4">
-                        <a href="#"><img class="card-img-top" src="../assets/images/fall1.jpg" alt="가을 여행지" /></a>
+                        <a href="#"><img class="card-img-top" src="${path}/imgs/winter1.jpg" alt="겨울 여행지" /></a>
                         <div class="card-body">
-                            <div class="small text-muted">가을 트레킹</div>
-                            <h2 class="card-title h4">담양 메타세쿼이아길</h2>
+                            <div class="small text-muted">해운대</div>
+                            <h2 class="card-title h4">부산 해운대 빛축제</h2>
                             <p class="card-text">
-                                노랗게 물든 길을 따라 걷는
-                                대표적인 가을 산책 코스.
+                                부산 해운대 해수욕장 바로 앞에서
+                                열리고 있는 해운대 빛축제.
                             </p>
                             <a class="btn btn-primary" href="#">자세히 보기 →</a>
                         </div>
                     </div>
 
                     <div class="card mb-4">
-                        <a href="#"><img class="card-img-top" src="../assets/images/fall2.jpg" alt="가을 여행지" /></a>
+                        <a href="#"><img class="card-img-top" src="${path}/imgs/winter2.jpg" alt="겨울 여행지" /></a>
                         <div class="card-body">
                             <div class="small text-muted">감성 여행</div>
-                            <h2 class="card-title h4">강릉 안반데기</h2>
+                            <h2 class="card-title h4">파주 퍼스트가든</h2>
                             <p class="card-text">
-                                가을 하늘과 어우러지는 고원 풍경.
-                                사진 명소로 유명한 장소입니다.
+                                밤에는 퍼스트가든의 곳곳이 전구옷을 입고
+                                화려하게 어둠을 밝혀주고 있었어요.
                             </p>
                             <a class="btn btn-primary" href="#">자세히 보기 →</a>
                         </div>
@@ -97,26 +111,26 @@
                 <div class="col-lg-6">
 
                     <div class="card mb-4">
-                        <a href="#"><img class="card-img-top" src="../assets/images/fall3.jpg" alt="가을 여행지" /></a>
+                        <a href="#"><img class="card-img-top" src="${path}/imgs/winter3.jpg" alt="겨울 여행지" /></a>
                         <div class="card-body">
-                            <div class="small text-muted">단풍 명소</div>
-                            <h2 class="card-title h4">설악산</h2>
+                            <div class="small text-muted">월미도</div>
+                            <h2 class="card-title h4">인천 월미도</h2>
                             <p class="card-text">
-                                가을이면 가장 먼저 단풍이 드는 산.
-                                절경으로 손꼽히는 국립공원.
+                                월미도 먹자골목으로 가면 상당한 호객 행위와 함께
+                                그안에서도 해산물 맛집들이 쭈르륵 ~ 있어요.
                             </p>
                             <a class="btn btn-primary" href="#">자세히 보기 →</a>
                         </div>
                     </div>
 
                     <div class="card mb-4">
-                        <a href="#"><img class="card-img-top" src="../assets/images/fall4.jpg" alt="가을 여행지" /></a>
+                        <a href="#"><img class="card-img-top" src="${path}/imgs/winter4.jpg" alt="겨울 여행지" /></a>
                         <div class="card-body">
                             <div class="small text-muted">힐링 여행</div>
-                            <h2 class="card-title h4">제주 오름</h2>
+                            <h2 class="card-title h4">강원도 삼척의 맹방해변 !</h2>
                             <p class="card-text">
-                                선선한 가을 바람과 함께 걷기 좋은
-                                제주도의 오름 여행.
+                                겨울 바다에는 사람도 많이 없는데
+                                찬바람 맞으면서 물멍 때리니 힐링 그잡채..💙
                             </p>
                             <a class="btn btn-primary" href="#">자세히 보기 →</a>
                         </div>
