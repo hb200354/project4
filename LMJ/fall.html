@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>가을 여행지 | GO-MONTH</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Common CSS -->
+  <link href="css/styles.css" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- =======================
+ 네비게이션 바
+======================= -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="index.html">GO-MONTH</a>
+
+    <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="spring.html">봄</a></li>
+        <li class="nav-item"><a class="nav-link" href="summer.html">여름</a></li>
+        <li class="nav-item"><a class="nav-link active" href="fall.html">가을</a></li>
+        <li class="nav-item"><a class="nav-link" href="winter.html">겨울</a></li>
+      </ul>
+    </div>
+
+    <div class="d-none d-lg-block">
+      <a class="btn btn-outline-light" href="login.html">로그인</a>
+    </div>
+  </div>
+</nav>
+
+<!-- =======================
+ 페이지 헤더
+======================= -->
+<header class="py-5 bg-light border-bottom mb-4">
+  <div class="container text-center my-5">
+    <h1 class="fw-bolder">가을에 떠나기 좋은 여행지</h1>
+    <p class="lead mb-0">단풍과 트레킹, 감성 여행이 빛나는 계절 (9~11월)</p>
+  </div>
+</header>
+
+<!-- =======================
+ 월별 필터 버튼
+======================= -->
+<section class="py-3">
+  <div class="container d-flex gap-2">
+    <button class="btn btn-dark btn-sm" onclick="changeMonth(0)">전체</button>
+    <button class="btn btn-outline-dark btn-sm" onclick="changeMonth(9)">9월</button>
+    <button class="btn btn-outline-dark btn-sm" onclick="changeMonth(10)">10월</button>
+    <button class="btn btn-outline-dark btn-sm" onclick="changeMonth(11)">11월</button>
+  </div>
+</section>
+
+<!-- =======================
+ 메인 콘텐츠
+======================= -->
+<div class="container">
+  <div class="row">
+
+    <!-- 메인 영역 -->
+    <div class="col-lg-8">
+
+      <!-- 대표 카드 (고정) -->
+      <div class="card mb-4 main-card">
+        <img class="card-img-top" src="assets/images/fall-main.jpg" alt="내장산">
+        <div class="card-body">
+          <div class="small text-muted">AUTUMN PICK</div>
+          <h2 class="card-title">내장산 국립공원</h2>
+          <p class="card-text">
+            전국 최고의 단풍 명소로 손꼽히는 내장산.
+            가을에 가장 아름다운 풍경을 만날 수 있습니다.
+          </p>
+          <a class="btn btn-primary" href="#">자세히 보기 →</a>
+        </div>
+      </div>
+
+      <!-- 여행 카드 목록 -->
+      <div class="row">
+        <div class="col-lg-6">
+
+          <div class="card mb-4 travel-card" data-month="9">
+            <img class="card-img-top" src="assets/images/fall1.jpg" alt="담양">
+            <div class="card-body">
+              <h2 class="card-title h4">담양 메타세쿼이아길</h2>
+              <p class="card-text">초가을에 걷기 좋은 대표 산책 코스.</p>
+            </div>
+          </div>
+
+          <div class="card mb-4 travel-card" data-month="9,10">
+            <img class="card-img-top" src="assets/images/fall2.jpg" alt="안반데기">
+            <div class="card-body">
+              <h2 class="card-title h4">강릉 안반데기</h2>
+              <p class="card-text">하늘과 고원이 어우러진 감성 여행지.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-lg-6">
+
+          <div class="card mb-4 travel-card" data-month="10">
+            <img class="card-img-top" src="assets/images/fall3.jpg" alt="설악산">
+            <div class="card-body">
+              <h2 class="card-title h4">설악산</h2>
+              <p class="card-text">가을 단풍이 가장 먼저 시작되는 산.</p>
+            </div>
+          </div>
+
+          <div class="card mb-4 travel-card" data-month="11">
+            <img class="card-img-top" src="assets/images/fall4.jpg" alt="제주 오름">
+            <div class="card-body">
+              <h2 class="card-title h4">제주 오름</h2>
+              <p class="card-text">늦가을에 걷기 좋은 제주 힐링 코스.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 사이드바 -->
+    <div class="col-lg-4">
+
+      <div class="card mb-4">
+        <div class="card-header">여행지 검색</div>
+        <div class="card-body">
+          <div class="input-group">
+            <input class="form-control" type="text" placeholder="여행지 검색">
+            <button class="btn btn-primary">검색</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mb-4">
+        <div class="card-header">가을 여행 테마</div>
+        <div class="card-body">
+          <ul class="list-unstyled mb-0">
+            <li>🍂 단풍 명소</li>
+            <li>🥾 트레킹</li>
+            <li>📸 감성 사진</li>
+            <li>☕ 가을 카페</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- =======================
+ 푸터
+======================= -->
+<footer class="py-5 bg-dark">
+  <div class="container">
+    <p class="m-0 text-center text-white">© GO-MONTH 2025</p>
+  </div>
+</footer>
+
+<!-- =======================
+ JS
+======================= -->
+<script>
+function changeMonth(month) {
+  const cards = document.querySelectorAll('.travel-card');
+
+  cards.forEach(card => {
+    const months = card.dataset.month;
+
+    if (month === 0) {
+      card.style.display = 'block';
+      return;
+    }
+
+    if (months.split(',').includes(String(month))) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
