@@ -74,7 +74,7 @@
     <div class="col-lg-8">
 
       <!-- 대표 카드 (고정) -->
-      <div class="card mb-4 main-card">
+      <div class="card mb-4">
         <img class="card-img-top" src="assets/images/fall-main.jpg" alt="내장산">
         <div class="card-body">
           <div class="small text-muted">AUTUMN PICK</div>
@@ -89,52 +89,56 @@
 
       <!-- 여행 카드 목록 -->
       <div class="row">
-        <div class="col-lg-6">
 
-          <div class="card mb-4 travel-card" data-month="9">
+        <!-- 카드 1 -->
+        <div class="col-lg-6 travel-card" data-month="9">
+          <div class="card mb-4">
             <img class="card-img-top" src="assets/images/fall1.jpg" alt="담양">
             <div class="card-body">
               <h2 class="card-title h4">담양 메타세쿼이아길</h2>
               <p class="card-text">초가을에 걷기 좋은 대표 산책 코스.</p>
             </div>
           </div>
+        </div>
 
-          <div class="card mb-4 travel-card" data-month="9,10">
+        <!-- 카드 2 -->
+        <div class="col-lg-6 travel-card" data-month="9,10">
+          <div class="card mb-4">
             <img class="card-img-top" src="assets/images/fall2.jpg" alt="안반데기">
             <div class="card-body">
               <h2 class="card-title h4">강릉 안반데기</h2>
               <p class="card-text">하늘과 고원이 어우러진 감성 여행지.</p>
             </div>
           </div>
-
         </div>
 
-        <div class="col-lg-6">
-
-          <div class="card mb-4 travel-card" data-month="10">
+        <!-- 카드 3 -->
+        <div class="col-lg-6 travel-card" data-month="10">
+          <div class="card mb-4">
             <img class="card-img-top" src="assets/images/fall3.jpg" alt="설악산">
             <div class="card-body">
               <h2 class="card-title h4">설악산</h2>
               <p class="card-text">가을 단풍이 가장 먼저 시작되는 산.</p>
             </div>
           </div>
+        </div>
 
-          <div class="card mb-4 travel-card" data-month="11">
+        <!-- 카드 4 -->
+        <div class="col-lg-6 travel-card" data-month="11">
+          <div class="card mb-4">
             <img class="card-img-top" src="assets/images/fall4.jpg" alt="제주 오름">
             <div class="card-body">
               <h2 class="card-title h4">제주 오름</h2>
               <p class="card-text">늦가을에 걷기 좋은 제주 힐링 코스.</p>
             </div>
           </div>
-
         </div>
-      </div>
 
+      </div>
     </div>
 
     <!-- 사이드바 -->
     <div class="col-lg-4">
-
       <div class="card mb-4">
         <div class="card-header">여행지 검색</div>
         <div class="card-body">
@@ -144,20 +148,8 @@
           </div>
         </div>
       </div>
-
-      <div class="card mb-4">
-        <div class="card-header">가을 여행 테마</div>
-        <div class="card-body">
-          <ul class="list-unstyled mb-0">
-            <li>🍂 단풍 명소</li>
-            <li>🥾 트레킹</li>
-            <li>📸 감성 사진</li>
-            <li>☕ 가을 카페</li>
-          </ul>
-        </div>
-      </div>
-
     </div>
+
   </div>
 </div>
 
@@ -171,24 +163,24 @@
 </footer>
 
 <!-- =======================
- JS
+ 월별 필터 JS
 ======================= -->
 <script>
 function changeMonth(month) {
-  const cards = document.querySelectorAll('.travel-card');
+  const items = document.querySelectorAll('.travel-card');
 
-  cards.forEach(card => {
-    const months = card.dataset.month;
+  items.forEach(item => {
+    const months = item.dataset.month;
 
     if (month === 0) {
-      card.style.display = 'block';
+      item.style.display = 'block';
       return;
     }
 
     if (months.split(',').includes(String(month))) {
-      card.style.display = 'block';
+      item.style.display = 'block';
     } else {
-      card.style.display = 'none';
+      item.style.display = 'none';
     }
   });
 }
