@@ -13,47 +13,24 @@
 <body>
 
 <!-- 네비게이션 -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark position-relative">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container">
-
-    <!-- 로고 -->
     <a class="navbar-brand fw-bold" href="index.html">GO-MONTH</a>
-
-    <!-- 토글 -->
-    <button class="navbar-toggler" type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <!-- 가운데 메뉴 -->
-    <div class="collapse navbar-collapse justify-content-center"
-         id="navbarSupportedContent">
-      <ul class="navbar-nav position-lg-absolute start-50 translate-middle-x">
-        <li class="nav-item"><a class="nav-link" href="spring.html">봄</a></li>
-        <li class="nav-item"><a class="nav-link active" href="summer.html">여름</a></li>
-        <li class="nav-item"><a class="nav-link" href="fall.html">가을</a></li>
-        <li class="nav-item"><a class="nav-link" href="winter.html">겨울</a></li>
-      </ul>
-    </div>
-
-    <!-- 로그인 -->
-    <div class="d-none d-lg-block">
-      <a class="btn btn-outline-light btn-login" href="login.html">로그인</a>
-    </div>
-
+    <ul class="navbar-nav mx-auto">
+      <li class="nav-item"><a class="nav-link" href="spring.html">봄</a></li>
+      <li class="nav-item"><a class="nav-link active" href="summer.html">여름</a></li>
+      <li class="nav-item"><a class="nav-link" href="fall.html">가을</a></li>
+      <li class="nav-item"><a class="nav-link" href="winter.html">겨울</a></li>
+    </ul>
+    <a class="btn btn-outline-light" href="login.html">로그인</a>
   </div>
 </nav>
 
-
 <!-- 헤더 -->
-<header class="py-5 bg-light border-bottom">
-  <div class="container text-center my-5">
-    <h1 class="fw-bolder">여름에 떠나기 좋은 여행지</h1>
-    <p class="lead mb-0">6월 · 7월 · 8월 여름 여행 추천</p>
-  </div>
+<header class="py-5 bg-light border-bottom text-center">
+  <h1>여름에 떠나기 좋은 여행지</h1>
+  <p>6월 · 7월 · 8월 여름 여행 추천</p>
 </header>
-
 
 <!-- 월 버튼 -->
 <section class="py-4">
@@ -143,8 +120,7 @@ const summerData = {
     list: [
       { id: 1, title: "부산 해운대", img: "assets/images/summer1.jpg", desc: "여름 대표 해변" },
       { id: 2, title: "평창 흥정계곡", img: "assets/images/summer2.jpg", desc: "시원한 계곡" }
-      { id: 4, title: "제주 협재해변", img: "assets/images/summer4.jpg", desc: "에메랄드빛 바다" }
-     { id: 5, title: "한강 야경", img: "assets/images/summer4.jpg", desc: "밤 산책" },
+    ]
   },
 
   7: {
