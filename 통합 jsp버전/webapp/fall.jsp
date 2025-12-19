@@ -1,176 +1,104 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8" />
-  <title>여름 여행지 | GO-MONTH</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <% String ctx=request.getContextPath(); %>
+    <!DOCTYPE html>
+    <html lang="ko">
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="css/styles.css" rel="stylesheet" />
-</head>
-<body>
+    <head>
+      <meta charset="UTF-8">
+      <title>가을 여행 | GO-MONTH</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<jsp:include page="/WEB-INF/jsp/header.jsp" />
+      <!-- Bootstrap CSS -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<header class="py-5 bg-light border-bottom">
-  <div class="container text-center my-5">
-    <h1 class="fw-bolder">여름에 떠나기 좋은 여행지</h1>
-    <p class="lead mb-0">6월 · 7월 · 8월 여름 여행 추천</p>
-  </div>
-</header>
+      <!-- 공통 CSS -->
+      <link rel="stylesheet" href="<%= ctx %>/css/styles.css">
+    </head>
 
-<section class="py-4">
-  <div class="container d-flex gap-2">
-    <button class="btn btn-dark btn-month" data-month="6">6월</button>
-    <button class="btn btn-outline-dark btn-month" data-month="7">7월</button>
-    <button class="btn btn-outline-dark btn-month" data-month="8">8월</button>
-  </div>
-</section>
+    <body>
 
-<div class="container">
-  <div class="row">
+      <!-- ===== HEADER ===== -->
+      <jsp:include page="/WEB-INF/jsp/header.jsp" />
 
-    <div class="col-lg-8">
-      <div class="card mb-4">
-        <img id="featuredImg" class="card-img-top" alt="대표 이미지" />
-        <div class="card-body">
-          <div class="small text-muted">SUMMER PICK</div>
-          <h2 id="featuredTitle"></h2>
-          <p id="featuredDesc"></p>
-          <a id="featuredLink" class="btn btn-primary btn-sm mt-2">자세히 보기 →</a>
+      <!-- ===== 페이지 타이틀 ===== -->
+      <section class="py-5 bg-light">
+        <div class="container text-center">
+          <h1 class="fw-bold">가을 여행</h1>
+          <p class="mt-2">9월 · 10월 · 11월에 떠나기 좋은 여행지</p>
         </div>
-      </div>
+      </section>
 
-      <div class="row" id="placeList"></div>
-    </div>
-
-    <div class="col-lg-4">
-      <div class="card mb-4">
-        <div class="card-header">여행지 검색</div>
-        <div class="card-body">
-          <input id="searchInput" class="form-control mb-2" placeholder="여행지 검색" />
-          <button id="searchBtn" class="btn btn-primary w-100">검색</button>
-        </div>
-      </div>
-
-      <div class="card mb-4">
-        <div class="card-header">여름 여행 테마</div>
-        <div class="card-body">
-          <ul class="list-unstyled mb-0">
-            <li>🏖 바다 여행</li>
-            <li>🌊 계곡 · 폭포</li>
-            <li>🌙 여름 밤 여행</li>
-            <li>🌿 힐링 · 휴양</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="card mb-4">
-        <div class="card-header">여름 여행 한 줄 팁</div>
-        <div class="card-body" id="tipBox"></div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<jsp:include page="/WEB-INF/jsp/footer.jsp" />
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-const summerData = {
-  6: {
-    featured: {
-      img: "assets/images/summer-main.jpg",
-      title: "강릉 경포대",
-      desc: "초여름에 가장 어울리는 바다 여행지"
-    },
-    tip: "6월은 습도가 낮아 여행하기 쾌적한 시기입니다 ☀️",
-    list: [
-      { id: 1, title: "부산 해운대", img: "assets/images/summer1.jpg", desc: "여름 대표 해변" },
-      { id: 2, title: "평창 흥정계곡", img: "assets/images/summer2.jpg", desc: "시원한 계곡" }
-    ]
-  },
-  7: {
-    featured: {
-      img: "assets/images/summer3.jpg",
-      title: "부산 광안리",
-      desc: "한여름 밤, 가장 빛나는 바다"
-    },
-    tip: "7월에는 밤 여행 코스를 추천해요 🌙",
-    list: [
-      { id: 3, title: "부산 광안리", img: "assets/images/summer3.jpg", desc: "야경 명소" },
-      { id: 4, title: "제주 협재해변", img: "assets/images/summer4.jpg", desc: "에메랄드빛 바다" }
-    ]
-  },
-  8: {
-    featured: {
-      img: "assets/images/summer4.jpg",
-      title: "한강 야경",
-      desc: "늦여름 밤, 도심 속 산책"
-    },
-    tip: "8월은 평일 여행이 좋아요 🍃",
-    list: [
-      { id: 5, title: "한강 야경", img: "assets/images/summer4.jpg", desc: "밤 산책" },
-      { id: 6, title: "흥정계곡", img: "assets/images/summer2.jpg", desc: "여름 마무리" }
-    ]
-  }
-};
-
-let currentMonth = 6;
-const featuredImg = document.getElementById("featuredImg");
-const featuredTitle = document.getElementById("featuredTitle");
-const featuredDesc = document.getElementById("featuredDesc");
-const featuredLink = document.getElementById("featuredLink");
-const placeList = document.getElementById("placeList");
-const searchInput = document.getElementById("searchInput");
-const searchBtn = document.getElementById("searchBtn");
-const tipBox = document.getElementById("tipBox");
-
-function renderMonth(month) {
-  currentMonth = month;
-  const data = summerData[month];
-  featuredImg.src = data.featured.img;
-  featuredTitle.innerText = data.featured.title;
-  featuredDesc.innerText = data.featured.desc;
-  tipBox.innerText = data.tip;
-  featuredLink.href = `detail.jsp?id=${month}`;
-  renderList(data.list);
-}
-
-function renderList(list) {
-  placeList.innerHTML = "";
-  list.forEach(p => {
-    placeList.innerHTML += `
-      <div class="col-lg-6 mb-4">
-        <div class="card h-100">
-          <img src="${p.img}" class="card-img-top" />
-          <div class="card-body">
-            <h5>${p.title}</h5>
-            <p>${p.desc}</p>
-            <a href="detail.jsp?id=${p.id}" class="btn btn-primary btn-sm">자세히 보기 →</a>
+      <!-- ===== 월 선택 버튼 ===== -->
+      <section class="py-4">
+        <div class="container text-center">
+          <div class="btn-group">
+            <button class="btn btn-outline-dark">9월</button>
+            <button class="btn btn-outline-dark">10월</button>
+            <button class="btn btn-outline-dark">11월</button>
           </div>
         </div>
-      </div>`;
-  });
-}
+      </section>
 
-searchBtn.onclick = () => {
-  const keyword = searchInput.value.trim();
-  const filtered = summerData[currentMonth].list.filter(p => p.title.includes(keyword));
-  renderList(filtered);
-};
+      <!-- ===== 여행지 카드 ===== -->
+      <section class="py-5">
+        <div class="container">
+          <div class="row g-4">
 
-document.querySelectorAll('.btn-month').forEach(btn => {
-  btn.onclick = () => {
-    document.querySelectorAll('.btn-month').forEach(b => b.classList.replace('btn-dark','btn-outline-dark'));
-    btn.classList.replace('btn-outline-dark','btn-dark');
-    renderMonth(btn.dataset.month);
-  };
-});
+            <!-- 카드 1 -->
+            <div class="col-md-4">
+              <div class="card h-100 text-center">
+                <img src="<%= ctx %>/assets/images/placeholder.jpg" class="card-img-top" alt="가을 여행지">
+                <div class="card-body">
+                  <h5 class="card-title">가을 여행지 1</h5>
+                  <p class="card-text">
+                    단풍이 아름다운 가을 추천 여행지입니다.
+                  </p>
+                  <a href="<%= ctx %>/detail.jsp?id=21" class="btn btn-primary">
+                    자세히 보기 →
+                  </a>
+                </div>
+              </div>
+            </div>
 
-renderMonth(6);
-</script>
-</body>
-</html>
+            <!-- 카드 2 -->
+            <div class="col-md-4">
+              <div class="card h-100 text-center">
+                <img src="<%= ctx %>/assets/images/placeholder.jpg" class="card-img-top" alt="가을 여행지">
+                <div class="card-body">
+                  <h5 class="card-title">가을 여행지 2</h5>
+                  <p class="card-text">
+                    가을 분위기를 느낄 수 있는 여행지입니다.
+                  </p>
+                  <a href="<%= ctx %>/detail.jsp?id=22" class="btn btn-primary">
+                    자세히 보기 →
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- 카드 3 -->
+            <div class="col-md-4">
+              <div class="card h-100 text-center">
+                <img src="<%= ctx %>/assets/images/placeholder.jpg" class="card-img-top" alt="가을 여행지">
+                <div class="card-body">
+                  <h5 class="card-title">가을 여행지 3</h5>
+                  <p class="card-text">
+                    사진 찍기 좋은 가을 명소입니다.
+                  </p>
+                  <a href="<%= ctx %>/detail.jsp?id=23" class="btn btn-primary">
+                    자세히 보기 →
+                  </a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== FOOTER ===== -->
+      <jsp:include page="/WEB-INF/jsp/footer.jsp" />
+
+    </body>
+
+    </html>

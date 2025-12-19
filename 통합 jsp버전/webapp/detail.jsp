@@ -1,18 +1,20 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%
-  String id = request.getParameter("id");
-  if (id == null) id = "0";
-%>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8" />
-  <title>여행지 상세 | GO-MONTH</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <% String ctx=request.getContextPath(); %>
+    <!DOCTYPE html>
+    <html lang="ko">
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="css/styles.css" rel="stylesheet" />
-</head>
+    <head>
+      <meta charset="UTF-8">
+      <title>GO-MONTH</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Bootstrap CSS -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+      <!-- 프로젝트 CSS -->
+      <link rel="stylesheet" href="<%= ctx %>/css/styles.css">
+    </head>
+
 <body>
 
 <jsp:include page="/WEB-INF/jsp/header.jsp" />
@@ -52,11 +54,11 @@
 
 <script>
 const placeData = {
-  1: { title: "부산 해운대", img: "assets/images/summer1.jpg", desc: "여름 대표 해변", season: "여름", month: "6~8월", tip: "성수기엔 오전 방문 추천" },
-  2: { title: "평창 흥정계곡", img: "assets/images/summer2.jpg", desc: "시원한 계곡", season: "여름", month: "7~8월", tip: "물놀이 후 여벌옷 필수" },
-  3: { title: "부산 광안리", img: "assets/images/summer3.jpg", desc: "야경이 아름다운 해변", season: "여름", month: "7월", tip: "밤 산책 추천" },
-  21:{ title: "내장산", img: "assets/images/fall1.jpg", desc: "단풍 명소", season: "가을", month: "10월", tip: "주말 혼잡 주의" },
-  31:{ title: "강원도 설경", img: "assets/images/winter1.jpg", desc: "눈 여행", season: "겨울", month: "1월", tip: "방한 준비 필수" }
+  1: { title: "부산 해운대", img: "<%= ctx %>/assets/images/summer1.jpg", desc: "여름 대표 해변", season: "여름", month: "6~8월", tip: "성수기엔 오전 방문 추천" },
+  2: { title: "평창 흥정계곡", img: "<%= ctx %>/assets/images/summer2.jpg", desc: "시원한 계곡", season: "여름", month: "7~8월", tip: "물놀이 후 여벌옷 필수" },
+  3: { title: "부산 광안리", img: "<%= ctx %>/assets/images/summer3.jpg", desc: "야경이 아름다운 해변", season: "여름", month: "7월", tip: "밤 산책 추천" },
+  21:{ title: "내장산", img: "<%= ctx %>/assets/images/fall1.jpg", desc: "단풍 명소", season: "가을", month: "10월", tip: "주말 혼잡 주의" },
+  31:{ title: "강원도 설경", img: "<%= ctx %>/assets/images/winter1.jpg", desc: "눈 여행", season: "겨울", month: "1월", tip: "방한 준비 필수" }
 };
 
 const id = <%= id %>;

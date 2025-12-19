@@ -1,14 +1,20 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8" />
-  <title>찜 목록 | GO-MONTH</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <% String ctx=request.getContextPath(); %>
+    <!DOCTYPE html>
+    <html lang="ko">
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="css/styles.css" rel="stylesheet" />
-</head>
+    <head>
+      <meta charset="UTF-8">
+      <title>GO-MONTH</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Bootstrap CSS -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+      <!-- 프로젝트 CSS -->
+      <link rel="stylesheet" href="<%= ctx %>/css/styles.css">
+    </head>
+
 <body>
 
 <jsp:include page="/WEB-INF/jsp/header.jsp" />

@@ -1,14 +1,20 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8" />
-  <title>여름 여행지 | GO-MONTH</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <% String ctx=request.getContextPath(); %>
+    <!DOCTYPE html>
+    <html lang="ko">
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="css/styles.css" rel="stylesheet" />
-</head>
+    <head>
+      <meta charset="UTF-8">
+      <title>GO-MONTH</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Bootstrap CSS -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+      <!-- 프로젝트 CSS -->
+      <link rel="stylesheet" href="<%= ctx %>/css/styles.css">
+    </head>
+
 <body>
 
 <jsp:include page="/WEB-INF/jsp/header.jsp" />
@@ -82,38 +88,38 @@
 const summerData = {
   6: {
     featured: {
-      img: "assets/images/summer-main.jpg",
+      img: "<%= ctx %>/assets/images/summer-main.jpg",
       title: "강릉 경포대",
       desc: "초여름에 가장 어울리는 바다 여행지"
     },
     tip: "6월은 습도가 낮아 여행하기 쾌적한 시기입니다 ☀️",
     list: [
-      { id: 1, title: "부산 해운대", img: "assets/images/summer1.jpg", desc: "여름 대표 해변" },
-      { id: 2, title: "평창 흥정계곡", img: "assets/images/summer2.jpg", desc: "시원한 계곡" }
+      { id: 1, title: "부산 해운대", img: "<%= ctx %>/assets/images/summer1.jpg", desc: "여름 대표 해변" },
+      { id: 2, title: "평창 흥정계곡", img: "<%= ctx %>/assets/images/summer2.jpg", desc: "시원한 계곡" }
     ]
   },
   7: {
     featured: {
-      img: "assets/images/summer3.jpg",
+      img: "<%= ctx %>/assets/images/summer3.jpg",
       title: "부산 광안리",
       desc: "한여름 밤, 가장 빛나는 바다"
     },
     tip: "7월에는 밤 여행 코스를 추천해요 🌙",
     list: [
-      { id: 3, title: "부산 광안리", img: "assets/images/summer3.jpg", desc: "야경 명소" },
-      { id: 4, title: "제주 협재해변", img: "assets/images/summer4.jpg", desc: "에메랄드빛 바다" }
+      { id: 3, title: "부산 광안리", img: "<%= ctx %>/assets/images/summer3.jpg", desc: "야경 명소" },
+      { id: 4, title: "제주 협재해변", img: "<%= ctx %>/assets/images/summer4.jpg", desc: "에메랄드빛 바다" }
     ]
   },
   8: {
     featured: {
-      img: "assets/images/summer4.jpg",
+      img: "<%= ctx %>/assets/images/summer4.jpg",
       title: "한강 야경",
       desc: "늦여름 밤, 도심 속 산책"
     },
     tip: "8월은 평일 여행이 좋아요 🍃",
     list: [
-      { id: 5, title: "한강 야경", img: "assets/images/summer4.jpg", desc: "밤 산책" },
-      { id: 6, title: "흥정계곡", img: "assets/images/summer2.jpg", desc: "여름 마무리" }
+      { id: 5, title: "한강 야경", img: "<%= ctx %>/assets/images/summer4.jpg", desc: "밤 산책" },
+      { id: 6, title: "흥정계곡", img: "<%= ctx %>/assets/images/summer2.jpg", desc: "여름 마무리" }
     ]
   }
 };

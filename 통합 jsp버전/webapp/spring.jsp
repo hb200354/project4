@@ -1,14 +1,20 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8" />
-  <title>봄 여행지 | GO-MONTH</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <% String ctx=request.getContextPath(); %>
+    <!DOCTYPE html>
+    <html lang="ko">
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="css/styles.css" rel="stylesheet" />
-</head>
+    <head>
+      <meta charset="UTF-8">
+      <title>GO-MONTH</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Bootstrap CSS -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+      <!-- 프로젝트 CSS -->
+      <link rel="stylesheet" href="<%= ctx %>/css/styles.css">
+    </head>
+
 <body>
 
 <jsp:include page="/WEB-INF/jsp/header.jsp" />
@@ -33,7 +39,7 @@
 
     <div class="col-lg-8">
       <div class="card mb-4">
-        <img class="card-img-top" src="assets/images/spring1.png" alt="봄 대표 여행지" />
+        <img class="card-img-top" src="<%= ctx %>/assets/images/spring1.PNG" alt="봄 대표 여행지" />
         <div class="card-body">
           <div class="small text-muted">SPRING PICK</div>
           <h2 class="card-title">봄 대표 여행지</h2>
@@ -45,7 +51,7 @@
       <div class="row">
         <div class="col-lg-6">
           <div class="card mb-4">
-            <img class="card-img-top" src="assets/images/spring2.jpg" alt="" />
+            <img class="card-img-top" src="<%= ctx %>/assets/images/spring2.jpg" alt="" />
             <div class="card-body">
               <div class="small text-muted">봄 테마</div>
               <h2 class="card-title h4">여행지 준비 중</h2>
@@ -57,7 +63,7 @@
 
         <div class="col-lg-6">
           <div class="card mb-4">
-            <img class="card-img-top" src="assets/images/spring3.jpg" alt="" />
+            <img class="card-img-top" src="<%= ctx %>/assets/images/spring3.jpg" alt="" />
             <div class="card-body">
               <div class="small text-muted">봄 테마</div>
               <h2 class="card-title h4">여행지 준비 중</h2>
