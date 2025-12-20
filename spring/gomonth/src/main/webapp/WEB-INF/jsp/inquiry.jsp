@@ -17,7 +17,9 @@
 
         <body>
 
-            <%@ include file="header.jsp" %>
+    <%@ include file="header.jsp" %>
+        <%@ include file="nav.jsp" %>
+
 
                 <!-- =======================
  페이지 헤더

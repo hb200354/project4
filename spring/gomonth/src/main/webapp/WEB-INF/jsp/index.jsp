@@ -12,7 +12,9 @@
 
   <body>
 
-    <%@ include file="header.jsp" %>
+      <%@ include file="header.jsp" %>
+        <%@ include file="nav.jsp" %>
+
 
       <!-- 메인 배너 -->
       <section class="py-5 bg-light text-center">

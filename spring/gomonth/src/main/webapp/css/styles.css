@@ -1,39 +1,45 @@
 @charset "UTF-8";
-/*!
-* Start Bootstrap - Blog Home v5.0.9
-* https://startbootstrap.com/template/blog-home
-* Copyright 2013-2023 Start Bootstrap
-* Licensed under MIT
-*/
 
-/* ===============================
-   Bootstrap Core Variables
-================================ */
+/* =================================================
+   GO-MONTH Design System (FINAL)
+================================================= */
 :root {
-  --bs-blue: #0d6efd;
-  --bs-indigo: #6610f2;
-  --bs-purple: #6f42c1;
-  --bs-pink: #d63384;
-  --bs-red: #dc3545;
-  --bs-orange: #fd7e14;
-  --bs-yellow: #ffc107;
-  --bs-green: #198754;
-  --bs-teal: #20c997;
-  --bs-cyan: #0dcaf0;
-  --bs-black: #000;
-  --bs-white: #fff;
-  --bs-gray: #6c757d;
-  --bs-gray-dark: #343a40;
-  --bs-light: #f8f9fa;
-  --bs-dark: #212529;
+  --gm-primary: #4c6ef5;
+  --gm-secondary: #15aabf;
+  --gm-dark: #212529;
+  --gm-light: #f8f9fa;
+  --gm-gray: #868e96;
+  --gm-border: #dee2e6;
 
-  --bs-body-font-family: system-ui, -apple-system, "Segoe UI", Roboto,
-    "Helvetica Neue", "Noto Sans", Arial, sans-serif;
+  --gm-radius: 14px;
+  --gm-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --gm-shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+
+  --gm-font: "Noto Sans KR", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
 }
 
-/* ===============================
-   Global Reset & Base
-================================ */
+.gm-section {
+  padding: 96px 0;
+}
+
+.gm-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  text-align: center;
+  letter-spacing: -0.04em;
+}
+
+.gm-subtitle {
+  margin-top: 12px;
+  text-align: center;
+  font-size: 1.05rem;
+  color: #868e96;
+}
+
+/* =================================================
+   Global Reset
+================================================= */
 *,
 *::before,
 *::after {
@@ -42,253 +48,274 @@
 
 body {
   margin: 0;
-  font-family: var(--bs-body-font-family);
+  font-family: "Noto Sans KR", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+
   font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #212529;
-  background-color: #fff;
+  line-height: 1.6;
+  color: var(--gm-dark);
+  background-color: #ffffff;
 }
 
-/* ===============================
-   Typography
-================================ */
-h1, h2, h3, h4, h5, h6 {
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-  line-height: 1.2;
-}
-
-p {
-  margin-top: 0;
-  margin-bottom: 1rem;
-}
-
-.lead {
-  font-size: 1.25rem;
-  font-weight: 300;
-}
-
-.small {
-  font-size: 0.875em;
-}
-
-/* ===============================
-   Links
-================================ */
 a {
-  color: #0d6efd;
+  color: var(--gm-primary);
   text-decoration: none;
 }
 
 a:hover {
-  color: #0a58ca;
+  color: #364fc7;
   text-decoration: underline;
 }
 
-/* ===============================
-   Images
-================================ */
-img {
-  vertical-align: middle;
+/* =================================================
+   Typography
+================================================= */
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
-/* 카드 이미지 크기 통일 */
-.card-img-top {
-  width: 100%;
-  height: 220px;          /* 원하는 고정 높이 */
-  object-fit: cover;     /* 비율 유지 + 넘치는 부분 잘림 */
+h5,
+h6 {
+  font-weight: 600;
 }
 
-
-/* ===============================
-   Layout
-================================ */
-.container {
-  width: 100%;
-  padding-right: 1.5rem;
-  padding-left: 1.5rem;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-/* ===============================
-   Cards
-================================ */
-.card {
-  border: 1px solid rgba(0, 0, 0, 0.125);
-  border-radius: 0.375rem;
-}
-
-.card-header {
-  background-color: #f8f9fa;
-  font-weight: 500;
-}
-
-.card-body {
-  padding: 1rem 1rem;
-}
-
-/* ===============================
-   Buttons
-================================ */
-.btn {
-  display: inline-block;
-  font-weight: 400;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  border: 1px solid transparent;
-  padding: 0.375rem 0.75rem;
-  font-size: 1rem;
-  border-radius: 0.375rem;
-}
-
-.btn-primary {
-  color: #fff;
-  background-color: #0d6efd;
-  border-color: #0d6efd;
-}
-
-.btn-primary:hover {
-  background-color: #0b5ed7;
-  border-color: #0a58ca;
-}
-
-.btn-outline-light {
-  color: #fff;
-  border-color: #fff;
-}
-
-.btn-outline-light:hover {
-  background-color: #fff;
-  color: #212529;
-}
-
-/* ===============================
-   Navbar
-================================ */
-.navbar {
-  padding: 0.5rem 1rem;
-}
-
-.navbar-brand {
-  font-size: 1.25rem;
-}
-
-.navbar-nav .nav-link {
-  padding: 0.5rem 1rem;
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.navbar-nav .nav-link.active,
-.navbar-nav .nav-link:hover {
-  color: #fff;
-}
-
-/* ===============================
-   Pagination
-================================ */
-.pagination {
-  margin-top: 1rem;
-}
-
-.page-link {
-  color: #0d6efd;
-}
-
-.page-item.active .page-link {
-  background-color: #0d6efd;
-  border-color: #0d6efd;
-  color: #fff;
-}
-
-/* ===============================
-   Footer
-================================ */
-footer {
-  margin-top: 3rem;
+.lead {
+  font-size: 1.15rem;
+  color: var(--gm-gray);
 }
 
 /* =================================================
-   ✅ GO-MONTH Custom Styles (중요)
+   Layout
+================================================= */
+.container {
+  max-width: 1200px;
+}
+
+/* =================================================
+   Premium Navigation (GO-MONTH)
 ================================================= */
 
-/* 로그인 버튼 (화면설계서 반영) */
+.navbar {
+  background: linear-gradient(180deg, #1f2328, #1c1f24);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  min-height: 78px;
+}
+
+/* 로고 */
+.navbar-brand {
+  font-weight: 900;
+  font-size: 1.35rem;
+  color: #ffffff !important;
+  letter-spacing: -0.04em;
+}
+
+/* 중앙 계절 네비 */
+.season-nav {
+  display: flex;
+  gap: 2rem;
+}
+
+.season-nav .nav-link {
+  color: #adb5bd;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.3rem 0;
+  position: relative;
+  transition: color 0.25s ease;
+}
+
+.season-nav .nav-link:hover {
+  color: #ffffff;
+}
+
+/* underline 제거하고 pill 느낌 */
+.season-nav .nav-link::after {
+  display: none;
+}
+
+/* active 계절 */
+.season-nav .nav-link.active {
+  color: #ffffff;
+}
+
+/* active 밑에 얇은 바 */
+.season-nav .nav-link.active::before {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  width: 36px;
+  height: 3px;
+  background-color: #4c6ef5;
+  border-radius: 3px;
+  transform: translateX(-50%);
+}
+
+/* 우측 메뉴 */
+.navbar-nav.ms-auto .nav-link {
+  color: #ced4da;
+}
+
+.navbar-nav.ms-auto .nav-link:hover {
+  color: #ffffff;
+}
+
+/* 로그인 버튼 */
 .btn-login {
-  border-radius: 50px;
-  padding: 6px 16px;
+  border-radius: 999px;
+  padding: 6px 20px;
   font-size: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+  background: transparent;
 }
 
-/* 데스크탑: 계절 네비게이션 중앙 정렬 */
-.navbar-nav.position-lg-absolute {
-  gap: 0.5rem;
+.btn-login:hover {
+  background-color: #ffffff;
+  color: #1c1f24;
 }
 
-/* 모바일에서는 중앙 정렬 해제 */
+/* 모바일 */
 @media (max-width: 991px) {
-  .navbar-nav.position-lg-absolute {
+  .season-nav {
     position: static !important;
     transform: none !important;
-    text-align: center;
+    margin: 1rem 0;
+    justify-content: center;
   }
 }
-
 /* =================================================
-   홈페이지
+   Banner (Index)
 ================================================= */
-
-
-/* 메인 배너 영역 */
 .banner-section {
-  padding: 60px 0;
+  padding: 80px 0;
+  background: linear-gradient(135deg,
+      var(--gm-primary),
+      var(--gm-secondary));
+  color: #ffffff;
 }
 
 .banner-box {
-  height: 300px;
-  position: relative;
+  border-radius: var(--gm-radius);
+  padding: 60px;
+  text-align: center;
 }
 
-.banner-arrow {
-  position: absolute;
-  top: 50%;
-  font-size: 2rem;
-  cursor: pointer;
-  transform: translateY(-50%);
+.banner-box h1 {
+  font-size: 2.5rem;
 }
 
-.banner-arrow.left {
-  left: 15px;
-}
-
-.banner-arrow.right {
-  right: 15px;
-}
-
-
-/* =================================================
-   로그인
-================================================= */
-
-/* 로그인/회원가입 페이지 세로 길이 확보 */
-.login-section {
-  min-height: calc(100vh - 120px); 
-  /* navbar + footer 높이 고려 */
+.banner-box p {
+  opacity: 0.9;
 }
 
 /* =================================================
-   사이트 소개 페이지
+   Cards
 ================================================= */
+.card {
+  border: none;
+  border-radius: var(--gm-radius);
+  box-shadow: var(--gm-shadow-sm);
+  transition: all 0.3s ease;
+}
 
-/* 사이트 소개 페이지 세로 길이 확보 */
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--gm-shadow-md);
+}
+
+.card-img-top {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 1.25rem;
+}
+
+.card-title {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.card-text {
+  font-size: 0.95rem;
+  color: var(--gm-gray);
+}
+
+/* =================================================
+   Buttons
+================================================= */
+.btn {
+  border-radius: 50px;
+  padding: 8px 20px;
+  font-weight: 500;
+}
+
+.btn-primary {
+  background-color: var(--gm-primary);
+  border-color: var(--gm-primary);
+}
+
+.btn-primary:hover {
+  background-color: #364fc7;
+  border-color: #364fc7;
+}
+
+.btn-outline-primary {
+  border-color: var(--gm-primary);
+  color: var(--gm-primary);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--gm-primary);
+  color: #ffffff;
+}
+
+/* =================================================
+   Pagination
+================================================= */
+.page-link {
+  border-radius: 50%;
+  margin: 0 4px;
+  color: var(--gm-primary);
+}
+
+.page-item.active .page-link {
+  background-color: var(--gm-primary);
+  border-color: var(--gm-primary);
+  color: #ffffff;
+}
+
+/* =================================================
+   Login / About
+================================================= */
+.login-section,
 .about-section {
-  min-height: calc(100vh - 120px);
+  min-height: calc(100vh - 140px);
+  display: flex;
+  align-items: center;
 }
 
-/* 소개 박스 너비 제한 (설계서 비율) */
 .about-box {
   max-width: 900px;
+  margin: 0 auto;
   line-height: 1.8;
+}
+
+/* =================================================
+   Footer
+================================================= */
+footer {
+  margin-top: 4rem;
+  padding: 1.5rem 0;
+  background-color: var(--gm-light);
+  color: var(--gm-gray);
+  text-align: center;
+  font-size: 0.9rem;
 }

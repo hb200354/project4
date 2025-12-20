@@ -1,31 +1,24 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
-  <% String cpath=request.getContextPath(); %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark position-relative">
-      <div class="container">
+    <!DOCTYPE html>
+    <html lang="ko">
 
-        <a class="navbar-brand fw-bold" href="<%=cpath%>/">GO-MONTH</a>
+    <head>
+      <meta charset="UTF-8">
+      <title>GO-MONTH</title>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+      <!-- Google Font (한글 안정) -->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap"
+        rel="stylesheet">
 
-        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-          <ul class="navbar-nav position-lg-absolute start-50 translate-middle-x">
-            <li class="nav-item"><a class="nav-link" href="<%=cpath%>/spring">봄</a></li>
-            <li class="nav-item"><a class="nav-link" href="<%=cpath%>/summer">여름</a></li>
-            <li class="nav-item"><a class="nav-link" href="<%=cpath%>/fall">가을</a></li>
-            <li class="nav-item"><a class="nav-link" href="<%=cpath%>/winter">겨울</a></li>
-            <li class="nav-item"><a class="nav-link" href="<%=cpath%>/about">소개</a></li>
-            <li class="nav-item"><a class="nav-link" href="<%=cpath%>/inquiry">문의</a></li>
-          </ul>
-        </div>
+      <!-- Bootstrap -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-        <div class="d-none d-lg-block">
-          <a class="btn btn-outline-light btn-login" href="<%=cpath%>/login">
-            로그인
-          </a>
-        </div>
+      <!-- Custom CSS -->
+      <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    </head>
 
-      </div>
-    </nav>
+    <body>

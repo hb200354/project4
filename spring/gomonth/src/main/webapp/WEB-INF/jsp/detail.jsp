@@ -18,6 +18,7 @@
     <body>
 
       <%@ include file="header.jsp" %>
+      <%@ include file="nav.jsp" %>
 
         <!-- =======================
  대표 이미지

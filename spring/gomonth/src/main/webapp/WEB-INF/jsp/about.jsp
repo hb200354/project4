@@ -15,11 +15,13 @@
 
   <body>
 
-    <%@ include file="header.jsp" %>
+      <%@ include file="header.jsp" %>
+        <%@ include file="nav.jsp" %>
+
 
       <!-- =======================
- 페이지 헤더
-======================= -->
+              페이지 헤더
+      ======================= -->
       <header class="py-5 bg-light border-bottom mb-4 text-center">
         <div class="container">
           <h1 class="fw-bolder">GO-MONTH 소개</h1>
@@ -30,8 +32,8 @@
       </header>
 
       <!-- =======================
- 서비스 개요
-======================= -->
+              서비스 개요
+      ======================= -->
       <section class="py-5">
         <div class="container">
           <h2 class="fw-bold mb-3">서비스 개요</h2>
@@ -44,8 +46,8 @@
       </section>
 
       <!-- =======================
- 기획 의도
-======================= -->
+              기획 의도
+      ======================= -->
       <section class="py-5 bg-light">
         <div class="container">
           <h2 class="fw-bold mb-3">기획 의도</h2>
@@ -58,8 +60,8 @@
       </section>
 
       <!-- =======================
- 주요 기능
-======================= -->
+              주요 기능
+      ======================= -->
       <section class="py-5">
         <div class="container">
           <h2 class="fw-bold mb-3">주요 기능</h2>
@@ -74,8 +76,8 @@
       </section>
 
       <!-- =======================
- 기술 스택
-======================= -->
+              기술 스택
+      ======================= -->
       <section class="py-5 bg-light">
         <div class="container">
           <h2 class="fw-bold mb-3">사용 기술</h2>

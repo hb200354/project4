@@ -16,7 +16,9 @@
 
   <body data-context-path="<%=request.getContextPath()%>">
 
-    <%@ include file="header.jsp" %>
+      <%@ include file="header.jsp" %>
+        <%@ include file="nav.jsp" %>
+
 
       <header class="py-5 bg-light border-bottom mb-4">
         <div class="container text-center my-5">
