@@ -19,24 +19,6 @@
     "Segoe UI", sans-serif;
 }
 
-.gm-section {
-  padding: 96px 0;
-}
-
-.gm-title {
-  font-size: 2.2rem;
-  font-weight: 800;
-  text-align: center;
-  letter-spacing: -0.04em;
-}
-
-.gm-subtitle {
-  margin-top: 12px;
-  text-align: center;
-  font-size: 1.05rem;
-  color: #868e96;
-}
-
 /* =================================================
    Global Reset
 ================================================= */
@@ -48,13 +30,35 @@
 
 body {
   margin: 0;
-  font-family: "Noto Sans KR", system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", sans-serif;
-
+  font-family: "Noto Sans KR", -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #212529;
   font-size: 1rem;
   line-height: 1.6;
-  color: var(--gm-dark);
-  background-color: #ffffff;
+  background-color: #e0eeff;
+}
+
+section {
+  padding-top: 64px;
+  padding-bottom: 64px;
+}
+
+h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+ul.list-unstyled li {
+  font-size: 1rem;
+  color: #495057;
+  margin-bottom: 8px;
+}
+
+.card,
+.sidebar,
+.panel {
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
 }
 
 a {

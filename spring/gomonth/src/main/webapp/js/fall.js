@@ -27,7 +27,7 @@ const fallData = {
     ]
   },
 
-  11: {
+  11: { 
     featured: {
       img: cpath + "/assets/images/fall3.jpg",
       title: "설악산",

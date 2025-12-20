@@ -70,7 +70,7 @@
 
             <div class="col-md-3">
               <div class="card h-100 text-center">
-                <img src="<%=request.getContextPath()%>/assets/images/winter5.jpg" class="card-img-top">
+                <img src="<%=request.getContextPath()%>/assets/images/winter-main.jpg" class="card-img-top">
                 <div class="card-body">
                   <h5>겨울</h5>
                   <p>눈꽃과 힐링</p>
