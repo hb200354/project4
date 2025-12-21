@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-GomonthApplication<gomonth>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.gomonth.GomonthApplication",
+            "projectName": "gomonth",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

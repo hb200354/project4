@@ -1,0 +1,325 @@
+@charset "UTF-8";
+
+/* =================================================
+   GO-MONTH Design System (FINAL)
+================================================= */
+:root {
+  --gm-primary: #4c6ef5;
+  --gm-secondary: #15aabf;
+  --gm-dark: #212529;
+  --gm-light: #f8f9fa;
+  --gm-gray: #868e96;
+  --gm-border: #dee2e6;
+
+  --gm-radius: 14px;
+  --gm-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --gm-shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+
+  --gm-font: "Noto Sans KR", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+}
+
+/* =================================================
+   Global Reset
+================================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Noto Sans KR", -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #212529;
+  font-size: 1rem;
+  line-height: 1.6;
+  background-color: #e0eeff;
+}
+
+section {
+  padding-top: 64px;
+  padding-bottom: 64px;
+}
+
+h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+ul.list-unstyled li {
+  font-size: 1rem;
+  color: #495057;
+  margin-bottom: 8px;
+}
+
+.card,
+.sidebar,
+.panel {
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+a {
+  color: var(--gm-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  color: #364fc7;
+  text-decoration: underline;
+}
+
+/* =================================================
+   Typography
+================================================= */
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+h5,
+h6 {
+  font-weight: 600;
+}
+
+.lead {
+  font-size: 1.15rem;
+  color: var(--gm-gray);
+}
+
+/* =================================================
+   Layout
+================================================= */
+.container {
+  max-width: 1200px;
+}
+
+/* =================================================
+   Premium Navigation (GO-MONTH)
+================================================= */
+
+.navbar {
+  background: linear-gradient(180deg, #1f2328, #1c1f24);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  min-height: 78px;
+}
+
+/* 로고 */
+.navbar-brand {
+  font-weight: 900;
+  font-size: 1.35rem;
+  color: #ffffff !important;
+  letter-spacing: -0.04em;
+}
+
+/* 중앙 계절 네비 */
+.season-nav {
+  display: flex;
+  gap: 2rem;
+}
+
+.season-nav .nav-link {
+  color: #adb5bd;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.3rem 0;
+  position: relative;
+  transition: color 0.25s ease;
+}
+
+.season-nav .nav-link:hover {
+  color: #ffffff;
+}
+
+/* underline 제거하고 pill 느낌 */
+.season-nav .nav-link::after {
+  display: none;
+}
+
+/* active 계절 */
+.season-nav .nav-link.active {
+  color: #ffffff;
+}
+
+/* active 밑에 얇은 바 */
+.season-nav .nav-link.active::before {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  width: 36px;
+  height: 3px;
+  background-color: #4c6ef5;
+  border-radius: 3px;
+  transform: translateX(-50%);
+}
+
+/* 우측 메뉴 */
+.navbar-nav.ms-auto .nav-link {
+  color: #ced4da;
+}
+
+.navbar-nav.ms-auto .nav-link:hover {
+  color: #ffffff;
+}
+
+/* 로그인 버튼 */
+.btn-login {
+  border-radius: 999px;
+  padding: 6px 20px;
+  font-size: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+  background: transparent;
+}
+
+.btn-login:hover {
+  background-color: #ffffff;
+  color: #1c1f24;
+}
+
+/* 모바일 */
+@media (max-width: 991px) {
+  .season-nav {
+    position: static !important;
+    transform: none !important;
+    margin: 1rem 0;
+    justify-content: center;
+  }
+}
+/* =================================================
+   Banner (Index)
+================================================= */
+.banner-section {
+  padding: 80px 0;
+  background: linear-gradient(135deg,
+      var(--gm-primary),
+      var(--gm-secondary));
+  color: #ffffff;
+}
+
+.banner-box {
+  border-radius: var(--gm-radius);
+  padding: 60px;
+  text-align: center;
+}
+
+.banner-box h1 {
+  font-size: 2.5rem;
+}
+
+.banner-box p {
+  opacity: 0.9;
+}
+
+/* =================================================
+   Cards
+================================================= */
+.card {
+  border: none;
+  border-radius: var(--gm-radius);
+  box-shadow: var(--gm-shadow-sm);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--gm-shadow-md);
+}
+
+.card-img-top {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 1.25rem;
+}
+
+.card-title {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.card-text {
+  font-size: 0.95rem;
+  color: var(--gm-gray);
+}
+
+/* =================================================
+   Buttons
+================================================= */
+.btn {
+  border-radius: 50px;
+  padding: 8px 20px;
+  font-weight: 500;
+}
+
+.btn-primary {
+  background-color: var(--gm-primary);
+  border-color: var(--gm-primary);
+}
+
+.btn-primary:hover {
+  background-color: #364fc7;
+  border-color: #364fc7;
+}
+
+.btn-outline-primary {
+  border-color: var(--gm-primary);
+  color: var(--gm-primary);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--gm-primary);
+  color: #ffffff;
+}
+
+/* =================================================
+   Pagination
+================================================= */
+.page-link {
+  border-radius: 50%;
+  margin: 0 4px;
+  color: var(--gm-primary);
+}
+
+.page-item.active .page-link {
+  background-color: var(--gm-primary);
+  border-color: var(--gm-primary);
+  color: #ffffff;
+}
+
+/* =================================================
+   Login / About
+================================================= */
+.login-section,
+.about-section {
+  min-height: calc(100vh - 140px);
+  display: flex;
+  align-items: center;
+}
+
+.about-box {
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+/* =================================================
+   Footer
+================================================= */
+footer {
+  margin-top: 4rem;
+  padding: 1.5rem 0;
+  background-color: var(--gm-light);
+  color: var(--gm-gray);
+  text-align: center;
+  font-size: 0.9rem;
+}
