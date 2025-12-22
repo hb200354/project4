@@ -4,7 +4,7 @@ package com.gomonth.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+//http://localhost:8080/
 @Controller
 public class MainController {
 
