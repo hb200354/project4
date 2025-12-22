@@ -9,7 +9,7 @@ const summerData = {
     list: [
       { id: "haeundae", title: "부산 해운대", img: "./assets/images/summer1.jpg", desc: "여름 대표 해변" },
       { id: "valley", title: "평창 흥정계곡", img: "./assets/images/summer2.jpg", desc: "시원한 계곡" },
-      { id: "hyupjae", title: "제주 협재해변", img: "./assets/images/summer4.jpg", desc: "에메랄드빛 바다" },
+      { id: "hyupjae", title: "제주 협재해변", img: "./assets/images/summer3.jpg", desc: "에메랄드빛 바다" },
       { id: "hangang", title: "한강 야경", img: "./assets/images/summer4.jpg", desc: "밤 산책" }
     ]
   },

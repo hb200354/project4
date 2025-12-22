@@ -87,14 +87,28 @@ function renderList(list) {
   });
 }
 
-document.querySelectorAll(".btn-month").forEach(btn => {
+// 버튼 클릭 이벤트 설정
+document.querySelectorAll(".btn-month").forEach((btn) => {
   btn.onclick = () => {
-    document.querySelectorAll(".btn-month").forEach(b =>
-      b.classList.replace("btn-dark", "btn-outline-dark")
-    );
-    btn.classList.replace("btn-outline-dark", "btn-dark");
+    // 1. 모든 버튼에서 'active' 클래스를 제거 (기존 강조 해제)
+    document.querySelectorAll(".btn-month").forEach((b) => {
+      b.classList.remove("active");
+    });
+    
+    // 2. 클릭한 버튼에만 'active' 클래스 추가 (새로운 강조)
+    btn.classList.add("active");
+
+    // 3. 해당 월의 데이터로 화면 갱신
     renderMonth(btn.dataset.month);
   };
+});
+
+// 페이지 로드 시 처음 선택된 버튼(3월 등)의 데이터를 화면에 뿌려줌
+window.addEventListener('load', () => {
+  const activeBtn = document.querySelector(".btn-month.active");
+  if (activeBtn) {
+    renderMonth(activeBtn.dataset.month);
+  }
 });
 
 searchBtn.onclick = () => {

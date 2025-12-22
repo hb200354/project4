@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <title>여름 여행지 | GO-MONTH</title>
@@ -7,245 +8,194 @@
 
   <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- 공통 CSS -->
   <link href="css/styles.css" rel="stylesheet">
 </head>
 
 <body>
 
-<!-- =======================
- 공통 네비게이션
+  <!-- =======================
+ 네비게이션
 ======================= -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container">
-    <a class="navbar-brand fw-bold" href="index.html">GO-MONTH</a>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark position-relative">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">GO-MONTH</a>
 
-    <ul class="navbar-nav mx-auto">
-      <li class="nav-item"><a class="nav-link" href="spring.html">봄</a></li>
-      <li class="nav-item"><a class="nav-link active" href="summer.html">여름</a></li>
-      <li class="nav-item"><a class="nav-link" href="fall.html">가을</a></li>
-      <li class="nav-item"><a class="nav-link" href="winter.html">겨울</a></li>
-    </ul>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <a class="btn btn-outline-light" href="login.html">로그인</a>
-  </div>
-</nav>
+      <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+        <ul class="navbar-nav position-lg-absolute start-50 translate-middle-x">
+          <li class="nav-item"><a class="nav-link" href="spring.html">봄</a></li>
+          <li class="nav-item"><a class="nav-link active" href="summer.html">여름</a></li>
+          <li class="nav-item"><a class="nav-link" href="fall.html">가을</a></li>
+          <li class="nav-item"><a class="nav-link" href="winter.html">겨울</a></li>
+        </ul>
+      </div>
 
-<!-- =======================
+      <div class="d-none d-lg-block">
+        <a class="btn btn-outline-light btn-login" href="login.html">로그인</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- =======================
  헤더
 ======================= -->
-<header class="py-5 bg-light border-bottom text-center">
-  <h1>여름에 떠나기 좋은 여행지</h1>
-  <p class="text-muted">6월 · 7월 · 8월 여름 여행 추천</p>
-</header>
+  <header class="py-5 bg-light border-bottom mb-4 text-center">
+    <h1 class="fw-bolder">여름에 떠나기 좋은 여행지</h1>
+    <p class="lead mb-0">6월 · 7월 · 8월 여름 여행 추천</p>
+  </header>
 
-<!-- =======================
- 월별 버튼
+  <!-- =======================
+ 월 버튼
 ======================= -->
-<section class="py-4">
-  <div class="container d-flex gap-2 justify-content-center">
-    <button class="btn btn-dark btn-month" data-month="6">6월</button>
-    <button class="btn btn-outline-dark btn-month" data-month="7">7월</button>
-    <button class="btn btn-outline-dark btn-month" data-month="8">8월</button>
-  </div>
-</section>
+  <section class="py-4">
+    <div class="container d-flex gap-2">
+      <button class="btn btn-dark btn-month" data-month="6">6월</button>
+      <button class="btn btn-outline-dark btn-month" data-month="7">7월</button>
+      <button class="btn btn-outline-dark btn-month" data-month="8">8월</button>
+    </div>
+  </section>
 
-<!-- =======================
+  <!-- =======================
  콘텐츠
 ======================= -->
-<div class="container">
-  <div class="row">
+  <div class="container">
+    <div class="row">
 
-    <!-- 메인 영역 -->
-    <div class="col-lg-8">
+      <!-- 메인 -->
+      <div class="col-lg-8">
 
-      <!-- 대표 카드 -->
-      <div class="card mb-4">
-        <img id="featuredImg" class="card-img-top" alt="대표 이미지">
-        <div class="card-body">
-          <div class="small text-muted">SUMMER PICK</div>
-          <h2 id="featuredTitle"></h2>
-          <p id="featuredDesc"></p>
-          <a id="featuredLink" class="btn btn-primary btn-sm mt-2">
-            자세히 보기 →
-          </a>
+        <!-- 대표 카드 -->
+        <div class="card mb-4">
+          <img id="featuredImg" class="card-img-top featured-img">
+          <div class="card-body">
+            <div class="small text-muted">SUMMER PICK</div>
+            <h2 id="featuredTitle"></h2>
+            <p id="featuredDesc"></p>
+            <a id="featuredLink" class="btn btn-primary btn-sm">자세히 보기 →</a>
+          </div>
         </div>
+
+        <!-- 카드 목록 -->
+        <div class="row" id="placeList"></div>
       </div>
 
-      <!-- 카드 목록 -->
-      <div class="row" id="placeList"></div>
-    </div>
+      <!-- 사이드 -->
+      <div class="col-lg-4">
 
-    <!-- 사이드바 -->
-    <div class="col-lg-4">
-
-      <!-- 검색 -->
-      <div class="card mb-4">
-        <div class="card-header">여행지 검색</div>
-        <div class="card-body">
-          <input id="searchInput" class="form-control mb-2" placeholder="여행지 검색">
-          <button id="searchBtn" class="btn btn-primary w-100">검색</button>
+        <div class="card mb-4">
+          <div class="card-header">여행지 검색</div>
+          <div class="card-body">
+            <input id="searchInput" class="form-control mb-2" placeholder="여행지 검색">
+            <button id="searchBtn" class="btn btn-primary w-100">검색</button>
+          </div>
         </div>
-      </div>
 
-      <!-- 테마 -->
-      <div class="card mb-4">
-        <div class="card-header">여름 여행 테마</div>
-        <div class="card-body">
-          <ul class="list-unstyled mb-0">
-            <li>🏖 바다 여행</li>
-            <li>🌊 계곡 · 폭포</li>
-            <li>🌙 여름 밤 여행</li>
-            <li>🌿 힐링 · 휴양</li>
-          </ul>
+        <div class="card mb-4">
+          <div class="card-header">여름 여행 테마</div>
+          <div class="card-body">
+            <ul class="list-unstyled mb-0">
+              <li>🏖 바다 여행</li>
+              <li>🌊 계곡 · 폭포</li>
+              <li>🌙 여름 밤 여행</li>
+              <li>🌿 힐링 · 휴양</li>
+            </ul>
+          </div>
         </div>
-      </div>
 
-      <!-- 한 줄 팁 -->
-      <div class="card mb-4">
-        <div class="card-header">여름 여행 한 줄 팁</div>
-        <div class="card-body" id="tipBox"></div>
-      </div>
+        <div class="card mb-4">
+          <div class="card-header">여름 여행 한 줄 팁</div>
+          <div class="card-body" id="tipBox"></div>
+        </div>
 
+      </div>
     </div>
   </div>
-</div>
 
-<!-- =======================
- JS
-======================= -->
+
 <script>
-/* ======================
- 여름 데이터
-====================== */
+const IMG_MERGE = "./통합/assets/images/";
+const IMG_MY = "./Imgs/";
+
 const summerData = {
   6: {
-    featured: {
-      id: 100,
-      title: "강릉 경포대",
-      desc: "초여름에 가장 잘 어울리는 바다 여행지",
-      img: "imgs/summer-main.jpg"
-    },
-    tip: `6월은 습도가 낮고 공기가 비교적 쾌적해
-바다와 계곡을 모두 즐기기 좋은 시기입니다 ☀️`,
+    featured: { id: 1, title: "강릉 경포대", desc: "초여름 바다 여행", img: IMG_MERGE+"summer-main.jpg" },
+    tip: "6월은 성수기 전이라 가장 여유롭습니다 ☀️",
     list: [
-      { id: 1, title: "부산 해운대", img: "imgs/summer1.jpg", desc: "여름 대표 해변" },
-      { id: 2, title: "평창 흥정계곡", img: "imgs/summer2.jpg", desc: "시원한 계곡" },
-      { id: 3, title: "제주 협재해변", img: "imgs/summer3.jpg", desc: "에메랄드빛 바다" },
-      { id: 4, title: "한강 야경", img: "imgs/summer4.jpg", desc: "밤 산책 명소" }
+      { id:1, title:"강릉 경포대", img:IMG_MERGE+"summer-main.jpg", desc:"초여름 바다" },
+      { id:2, title:"부산 해운대", img:IMG_MERGE+"summer1.jpg", desc:"여름 대표 해변" },
+      { id:3, title:"평창 흥정계곡", img:IMG_MERGE+"summer2.jpg", desc:"시원한 계곡" },
+      { id:4, title:"제주 협재해변", img:IMG_MERGE+"summer3.jpg", desc:"에메랄드빛 바다" }
     ]
   },
-
   7: {
-    featured: {
-      id: 5,
-      title: "대전 상소동 산림욕장",
-      desc: "자연 속 힐링 여름 여행",
-      img: "imgs/July1.jpg"
-    },
-    tip: `7월은 낮보다 밤이 더 매력적인 달로
-야경과 자연을 함께 즐기기 좋아요 🌙`,
+    featured: { id: 5, title: "대전 상소동 산림욕장", desc:"숲 힐링", img: IMG_MY+"July1.jpg" },
+    tip: "7월은 숲·야간 여행이 좋아요 🌙",
     list: [
-      { id: 5, title: "대전 상소동 산림욕장", img: "imgs/July1.jpg", desc: "숲속 힐링" },
-      { id: 6, title: "평창 육백마지기", img: "imgs/July2.jpg", desc: "드넓은 초원" },
-      { id: 7, title: "울릉도", img: "imgs/July3.jpg", desc: "청량한 섬 여행" },
-      { id: 8, title: "양양 하조대해수욕장", img: "imgs/July4.jpg", desc: "탁 트인 바다" }
+      { id:5, title:"상소동 산림욕장", img:IMG_MY+"July1.jpg", desc:"숲 힐링" },
+      { id:6, title:"육백마지기", img:IMG_MY+"July2.jpg", desc:"초원 풍경" },
+      { id:7, title:"울릉도", img:IMG_MY+"July3.jpg", desc:"섬 여행" },
+      { id:8, title:"하조대해수욕장", img:IMG_MY+"July4.jpg", desc:"동해 바다" }
     ]
   },
-
   8: {
-    featured: {
-      id: 9,
-      title: "가평 피노키오와 다빈치",
-      desc: "늦여름 감성 여행",
-      img: "imgs/August1.jpg"
-    },
-    tip: `8월은 성수기를 지나 여유가 생기는 시기로
-조용한 자연 속 여행이 잘 어울려요 🍃`,
+    featured: { id: 9, title: "피노키오와 다빈치", desc:"늦여름 감성", img: IMG_MY+"August1.jpg" },
+    tip: "8월은 여유 있는 감성 여행 🍃",
     list: [
-      { id: 9, title: "가평 피노키오와 다빈치", img: "imgs/August1.jpg", desc: "동화 같은 공간" },
-      { id: 10, title: "삼척 장호항", img: "imgs/August2.jpg", desc: "맑은 바다" },
-      { id: 11, title: "아침고요수목원", img: "imgs/August3.jpg", desc: "정원 산책" },
-      { id: 12, title: "태백 해바라기축제", img: "imgs/August4.jpg", desc: "여름의 마지막" }
+      { id:9, title:"피노키오와 다빈치", img:IMG_MY+"August1.jpg", desc:"감성 여행" },
+      { id:10, title:"장호항", img:IMG_MY+"August2.jpg", desc:"맑은 바다" },
+      { id:11, title:"아침고요수목원", img:IMG_MY+"August3.jpg", desc:"정원 산책" },
+      { id:12, title:"해바라기축제", img:IMG_MY+"August4.jpg", desc:"여름 마무리" }
     ]
   }
 };
 
 let currentMonth = 6;
-
-/* ======================
- 렌더링 함수
-====================== */
-const featuredImg = document.getElementById("featuredImg");
+const featuredImg = featuredImgEl = document.getElementById("featuredImg");
 const featuredTitle = document.getElementById("featuredTitle");
 const featuredDesc = document.getElementById("featuredDesc");
 const featuredLink = document.getElementById("featuredLink");
 const placeList = document.getElementById("placeList");
 const tipBox = document.getElementById("tipBox");
 
-function renderMonth(month) {
-  currentMonth = month;
-  const data = summerData[month];
+function renderMonth(m){
+  const d = summerData[m];
+  featuredImg.src = d.featured.img;
+  featuredTitle.textContent = d.featured.title;
+  featuredDesc.textContent = d.featured.desc;
+  featuredLink.href = `detail.html?id=${d.featured.id}`;
+  tipBox.textContent = d.tip;
 
-  featuredImg.src = data.featured.img;
-  featuredTitle.innerText = data.featured.title;
-  featuredDesc.innerText = data.featured.desc;
-  featuredLink.href = `detail.html?id=${data.featured.id}`;
-  tipBox.innerText = data.tip;
-
-  renderList(data.list);
-}
-
-function renderList(list) {
-  placeList.innerHTML = "";
-  list.forEach(p => {
-    placeList.innerHTML += `
-      <div class="col-lg-6 mb-4">
-        <div class="card h-100">
-          <img src="${p.img}" class="card-img-top">
-          <div class="card-body">
-            <h5>${p.title}</h5>
-            <p>${p.desc}</p>
-            <a href="detail.html?id=${p.id}"
-               class="btn btn-primary btn-sm">
-              자세히 보기 →
-            </a>
-          </div>
+  placeList.innerHTML="";
+  d.list.forEach(p=>{
+    placeList.innerHTML+=`
+    <div class="col-lg-6 mb-4">
+      <div class="card h-100">
+        <img src="${p.img}" class="card-img-top">
+        <div class="card-body">
+          <h5>${p.title}</h5>
+          <p>${p.desc}</p>
+          <a href="detail.html?id=${p.id}" class="btn btn-primary btn-sm">자세히 보기 →</a>
         </div>
       </div>
-    `;
+    </div>`;
   });
 }
 
-/* ======================
- 이벤트
-====================== */
-
-// 월 버튼
-document.querySelectorAll(".btn-month").forEach(btn => {
-  btn.addEventListener("click", () => {
-    document.querySelectorAll(".btn-month").forEach(b => {
-      b.classList.remove("btn-dark");
-      b.classList.add("btn-outline-dark");
+document.querySelectorAll(".btn-month").forEach(btn=>{
+  btn.onclick=()=>{
+    document.querySelectorAll(".btn-month").forEach(b=>{
+      b.classList.replace("btn-dark","btn-outline-dark");
     });
-    btn.classList.remove("btn-outline-dark");
-    btn.classList.add("btn-dark");
-
-    renderMonth(btn.dataset.month);
-  });
+    btn.classList.replace("btn-outline-dark","btn-dark");
+    renderMonth(Number(btn.dataset.month));
+  }
 });
 
-// 검색
-document.getElementById("searchBtn").addEventListener("click", () => {
-  const keyword = document.getElementById("searchInput").value.trim();
-  const list = summerData[currentMonth].list.filter(p =>
-    p.title.includes(keyword)
-  );
-  renderList(list);
-});
-
-// 초기 렌더
 renderMonth(6);
 </script>
-
 </body>
 </html>
