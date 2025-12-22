@@ -15,7 +15,7 @@
         <div class="col-md-6 d-none d-md-block" 
              style="background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.2)), url('<%=request.getContextPath()%>/assets/images/join.jpg') no-repeat center center / cover;">
             <div class="h-100 d-flex flex-column justify-content-end p-5 text-white">
-                <h2 class="display-5 fw-bold mb-3">Join Us</h2>
+                <h2 class="display-5 fw-bold mb-3">GO-MONTH</h2>
                 <p class="lead">당신만의 계절을 찾아서,<br>GO-MONTH와 함께 떠나보세요.</p>
             </div>
         </div>
