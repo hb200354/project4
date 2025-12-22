@@ -94,13 +94,20 @@ img {
   vertical-align: middle;
 }
 
-/* 카드 이미지 크기 통일 */
+/* =================================================
+   카드 & 대표 이미지 크기 통일 (봄/여름 공통)
+================================================= */
 .card-img-top {
   width: 100%;
-  height: 220px;          /* 원하는 고정 높이 */
-  object-fit: cover;     /* 비율 유지 + 넘치는 부분 잘림 */
+  height: 220px;
+  object-fit: cover;
 }
 
+#featuredImg {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+}
 
 /* ===============================
    Layout
@@ -119,6 +126,7 @@ img {
 .card {
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.375rem;
+  overflow: hidden;
 }
 
 .card-header {
@@ -127,11 +135,11 @@ img {
 }
 
 .card-body {
-  padding: 1rem 1rem;
+  padding: 1rem;
 }
 
 /* ===============================
-   Buttons
+   Buttons (기본)
 ================================ */
 .btn {
   display: inline-block;
@@ -145,6 +153,7 @@ img {
   border-radius: 0.375rem;
 }
 
+/* Primary */
 .btn-primary {
   color: #fff;
   background-color: #0d6efd;
@@ -156,14 +165,37 @@ img {
   border-color: #0a58ca;
 }
 
-.btn-outline-light {
-  color: #fff;
-  border-color: #fff;
+/* ===============================
+   🔧 outline 버튼 복구 (중요)
+================================ */
+.btn-outline-primary {
+  border-color: #0d6efd;
+  color: #0d6efd;
 }
 
-.btn-outline-light:hover {
-  background-color: #fff;
+.btn-outline-secondary {
+  border-color: #6c757d;
+  color: #6c757d;
+}
+
+.btn-outline-dark {
+  border-color: #212529;
   color: #212529;
+}
+
+.btn-outline-primary:hover {
+  background-color: #0d6efd;
+  color: #fff;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+.btn-outline-dark:hover {
+  background-color: #212529;
+  color: #fff;
 }
 
 /* ===============================
@@ -185,6 +217,17 @@ img {
 .navbar-nav .nav-link.active,
 .navbar-nav .nav-link:hover {
   color: #fff;
+}
+
+/* =================================================
+   월별 버튼 영역 (봄/여름 공통)
+================================================= */
+.month-btn-wrap {
+  margin: 20px 0 30px;
+}
+
+.month-btn-wrap .btn {
+  min-width: 60px;
 }
 
 /* ===============================
@@ -212,22 +255,22 @@ footer {
 }
 
 /* =================================================
-   ✅ GO-MONTH Custom Styles (중요)
+   GO-MONTH Custom Styles
 ================================================= */
 
-/* 로그인 버튼 (화면설계서 반영) */
+/* 로그인 버튼 */
 .btn-login {
   border-radius: 50px;
   padding: 6px 16px;
   font-size: 0.9rem;
 }
 
-/* 데스크탑: 계절 네비게이션 중앙 정렬 */
+/* 데스크탑: 계절 네비게이션 중앙 */
 .navbar-nav.position-lg-absolute {
   gap: 0.5rem;
 }
 
-/* 모바일에서는 중앙 정렬 해제 */
+/* 모바일 네비 */
 @media (max-width: 991px) {
   .navbar-nav.position-lg-absolute {
     position: static !important;
@@ -237,58 +280,31 @@ footer {
 }
 
 /* =================================================
-   홈페이지
+   기타 페이지 공통
 ================================================= */
-
-
-/* 메인 배너 영역 */
-.banner-section {
-  padding: 60px 0;
-}
-
-.banner-box {
-  height: 300px;
-  position: relative;
-}
-
-.banner-arrow {
-  position: absolute;
-  top: 50%;
-  font-size: 2rem;
-  cursor: pointer;
-  transform: translateY(-50%);
-}
-
-.banner-arrow.left {
-  left: 15px;
-}
-
-.banner-arrow.right {
-  right: 15px;
-}
-
-
-/* =================================================
-   로그인
-================================================= */
-
-/* 로그인/회원가입 페이지 세로 길이 확보 */
 .login-section {
-  min-height: calc(100vh - 120px); 
-  /* navbar + footer 높이 고려 */
+  min-height: calc(100vh - 120px);
 }
 
-/* =================================================
-   사이트 소개 페이지
-================================================= */
-
-/* 사이트 소개 페이지 세로 길이 확보 */
 .about-section {
   min-height: calc(100vh - 120px);
 }
 
-/* 소개 박스 너비 제한 (설계서 비율) */
 .about-box {
   max-width: 900px;
   line-height: 1.8;
+}
+
+/* =================================================
+   상세 페이지 설명 가독성
+================================================= */
+#detailDesc {
+  padding-left: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+#detailDesc li {
+  margin-bottom: 0.6rem;
+  line-height: 1.7;
+  color: #333;
 }
