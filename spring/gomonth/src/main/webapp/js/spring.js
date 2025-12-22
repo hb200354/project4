@@ -11,13 +11,13 @@ const springData = {
       {
         id: "yeouido",
         title: "여의도 벚꽃길",
-        img: cpath + "/assets/images/spring1.png",
+        img: cpath + "/assets/images/spring2.jpg",
         desc: "벚꽃 산책",
       },
       {
         id: "jeju",
         title: "제주 유채꽃",
-        img: cpath + "/assets/images/spring2.jpg",
+        img: cpath + "/assets/images/spring3.jpg",
         desc: "노란 봄 풍경",
       },
     ],
@@ -108,14 +108,28 @@ function renderList(list) {
   });
 }
 
+// 버튼 클릭 이벤트 설정
 document.querySelectorAll(".btn-month").forEach((btn) => {
   btn.onclick = () => {
-    document.querySelectorAll(".btn-month").forEach((b) =>
-      b.classList.replace("btn-dark", "btn-outline-dark")
-    );
-    btn.classList.replace("btn-outline-dark", "btn-dark");
+    // 1. 모든 버튼에서 'active' 클래스를 제거 (기존 강조 해제)
+    document.querySelectorAll(".btn-month").forEach((b) => {
+      b.classList.remove("active");
+    });
+    
+    // 2. 클릭한 버튼에만 'active' 클래스 추가 (새로운 강조)
+    btn.classList.add("active");
+
+    // 3. 해당 월의 데이터로 화면 갱신
     renderMonth(btn.dataset.month);
   };
+});
+
+// 페이지 로드 시 처음 선택된 버튼(3월 등)의 데이터를 화면에 뿌려줌
+window.addEventListener('load', () => {
+  const activeBtn = document.querySelector(".btn-month.active");
+  if (activeBtn) {
+    renderMonth(activeBtn.dataset.month);
+  }
 });
 
 searchBtn.onclick = () => {

@@ -5,7 +5,7 @@
 
         <!-- 로고 (홈/index 이동) -->
         <a class="navbar-brand" href="${pageContext.request.contextPath}/">
-            GO-MONTH
+            <img src="${pageContext.request.contextPath}/assets/images/logo.png" alt="GO-MONTH 로고" class="navbar-logo">
         </a>
 
         <!-- 중앙: 계절 네비게이션 -->
@@ -27,7 +27,7 @@
         <!-- 우측: 문의 / 로그인 -->
         <ul class="navbar-nav ms-auto align-items-center">
             <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/inquiryList">
+                <a class="nav-link" href="${pageContext.request.contextPath}/inquiry">
                     문의
                 </a>
             </li>

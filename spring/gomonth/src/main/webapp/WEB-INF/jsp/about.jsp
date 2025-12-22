@@ -1,98 +1,73 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-  <!DOCTYPE html>
-  <html lang="ko">
-
-  <head>
+<% String cpath = request.getContextPath(); %>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
     <meta charset="UTF-8">
-    <title>GO-MONTH 소개</title>
-
-    <!-- Bootstrap -->
+    <title>소개 | GO-MONTH</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<%=cpath%>/css/styles.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-white">
+    <%@ include file="header.jsp" %>
+    <%@ include file="nav.jsp" %>
 
-    <!-- 공통 CSS -->
-    <link href="<%=request.getContextPath()%>/css/styles.css" rel="stylesheet">
-  </head>
-
-  <body>
-
-      <%@ include file="header.jsp" %>
-        <%@ include file="nav.jsp" %>
-
-
-      <!-- =======================
-              페이지 헤더
-      ======================= -->
-      <header class="py-5 bg-light border-bottom mb-4 text-center">
-        <div class="container">
-          <h1 class="fw-bolder">GO-MONTH 소개</h1>
-          <p class="lead mb-0">
-            계절과 월을 기준으로 여행지를 추천하는 큐레이션 서비스
-          </p>
+    <header class="about-hero" style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('<%=cpath%>/assets/images/fall-main.jpg') no-repeat center center / cover;">
+        <div class="container h-100 d-flex align-items-center justify-content-center text-center">
+            <div class="text-white">
+                <span class="badge bg-primary mb-3 px-3 py-2">OUR STORY</span>
+                <h1 class="display-2 fw-800 mb-4">가장 아름다운 순간을<br>당신에게 선물합니다.</h1>
+                <p class="lead opacity-75">GO-MONTH는 열두 달, 계절의 변화를 가장 잘 느낄 수 있는<br>최적의 여행지를 큐레이션합니다.</p>
+            </div>
         </div>
-      </header>
+    </header>
 
-      <!-- =======================
-              서비스 개요
-      ======================= -->
-      <section class="py-5">
+    <section class="py-100">
         <div class="container">
-          <h2 class="fw-bold mb-3">서비스 개요</h2>
-          <p>
-            GO-MONTH는 여행 시기를 기준으로 여행지를 추천하는 웹 서비스입니다.
-            기존의 지역 중심 여행 서비스와 달리, 사용자가 여행을 떠나기 좋은
-            <b>월과 계절</b>을 선택하면 그에 맞는 여행지를 직관적으로 확인할 수 있습니다.
-          </p>
+            <div class="row text-center mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="fw-bold mb-4">왜 GO-MONTH인가요?</h2>
+                    <p class="text-muted">우리는 단순히 장소를 알려주는 것을 넘어,<br>그 계절에만 느낄 수 있는 공기와 색감을 전달하고자 합니다.</p>
+                </div>
+            </div>
+
+            <div class="row g-4 mt-2">
+                <div class="col-md-4">
+                    <div class="value-card p-5 text-center shadow-sm">
+                        <div class="value-icon mb-4"><i class="fas fa-calendar-check text-primary fa-3x"></i></div>
+                        <h4 class="fw-bold mb-3">정교한 큐레이션</h4>
+                        <p class="text-muted small mb-0">빅데이터와 전문가의 안목으로 매달 가장 매력적인 여행지 5곳을 선정합니다.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="value-card p-5 text-center shadow-sm border-primary border-top border-4">
+                        <div class="value-icon mb-4"><i class="fas fa-camera-retro text-primary fa-3x"></i></div>
+                        <h4 class="fw-bold mb-3">시각적 영감</h4>
+                        <p class="text-muted small mb-0">고화질 비주얼 콘텐츠를 통해 여행지에 가기 전 미리 설레는 경험을 제공합니다.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="value-card p-5 text-center shadow-sm">
+                        <div class="value-icon mb-4"><i class="fas fa-map-marked-alt text-primary fa-3x"></i></div>
+                        <h4 class="fw-bold mb-3">최적의 타이밍</h4>
+                        <p class="text-muted small mb-0">꽃이 피고, 단풍이 드는 찰나의 순간을 놓치지 않도록 정확한 정보를 제공합니다.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </section>
+    </section>
 
-      <!-- =======================
-              기획 의도
-      ======================= -->
-      <section class="py-5 bg-light">
-        <div class="container">
-          <h2 class="fw-bold mb-3">기획 의도</h2>
-          <ul>
-            <li>언제 여행을 가면 좋을지 고민하는 사용자를 위한 서비스</li>
-            <li>계절별·월별 여행 정보의 직관적인 제공</li>
-            <li>여행 준비 시간을 줄이고 선택을 돕는 큐레이션</li>
-          </ul>
+    <section class="py-5 bg-light">
+        <div class="container text-center py-5">
+            <h3 class="fw-bold mb-4">지금, 당신의 계절을 찾아보세요.</h3>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="<%=cpath%>/spring.jsp" class="btn btn-primary px-5 py-3 fw-bold shadow">여행지 보러가기</a>
+            </div>
         </div>
-      </section>
+    </section>
 
-      <!-- =======================
-              주요 기능
-      ======================= -->
-      <section class="py-5">
-        <div class="container">
-          <h2 class="fw-bold mb-3">주요 기능</h2>
-          <ul>
-            <li>봄 / 여름 / 가을 / 겨울 시즌별 여행지 제공</li>
-            <li>월별 여행지 필터링</li>
-            <li>여행지 상세 정보 제공</li>
-            <li>찜 목록 관리</li>
-            <li>문의하기 기능</li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- =======================
-              기술 스택
-      ======================= -->
-      <section class="py-5 bg-light">
-        <div class="container">
-          <h2 class="fw-bold mb-3">사용 기술</h2>
-          <ul>
-            <li>Frontend: HTML, CSS, JavaScript, Bootstrap</li>
-            <li>Backend: Java, Spring MVC</li>
-            <li>View: JSP</li>
-            <li>Database: 추후 연동 예정</li>
-          </ul>
-        </div>
-      </section>
-
-      <%@ include file="footer.jsp" %>
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
-
-  </html>
+    <%@ include file="footer.jsp" %>
+</body>
+</html>
