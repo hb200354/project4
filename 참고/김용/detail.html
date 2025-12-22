@@ -1,133 +1,254 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <title>여행지 상세 | GO-MONTH</title>
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>여행지 상세 정보 | GO-MONTH</title>
 
   <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- 공통 CSS -->
   <link href="css/styles.css" rel="stylesheet">
 </head>
 
 <body>
 
-<!-- 네비게이션 -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container">
-    <a class="navbar-brand fw-bold" href="index.html">GO-MONTH</a>
-    <ul class="navbar-nav mx-auto">
-      <li class="nav-item"><a class="nav-link" href="spring.html">봄</a></li>
-      <li class="nav-item"><a class="nav-link active" href="summer.html">여름</a></li>
-      <li class="nav-item"><a class="nav-link" href="fall.html">가을</a></li>
-      <li class="nav-item"><a class="nav-link" href="winter.html">겨울</a></li>
-    </ul>
-    <a class="btn btn-outline-light" href="login.html">로그인</a>
-  </div>
-</nav>
+  <!-- 네비게이션 -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark position-relative">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">GO-MONTH</a>
 
-<!-- 헤더 -->
-<header class="py-4 bg-light border-bottom">
-  <div class="container">
-    <h1 id="detailTitle"></h1>
-    <p class="text-muted" id="detailSubtitle"></p>
-  </div>
-</header>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-<!-- 상세 콘텐츠 -->
-<div class="container my-5">
-  <div class="row">
+      <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+        <ul class="navbar-nav position-lg-absolute start-50 translate-middle-x">
+          <li class="nav-item"><a class="nav-link" href="spring.html">봄</a></li>
+          <li class="nav-item"><a class="nav-link" href="summer.html">여름</a></li>
+          <li class="nav-item"><a class="nav-link" href="fall.html">가을</a></li>
+          <li class="nav-item"><a class="nav-link" href="winter.html">겨울</a></li>
+        </ul>
+      </div>
 
-    <!-- 이미지 -->
-    <div class="col-lg-7 mb-4">
-      <img id="detailImg" class="img-fluid rounded shadow-sm" alt="여행지 이미지">
+      <div class="d-none d-lg-block">
+        <a class="btn btn-outline-light btn-login" href="login.html">로그인</a>
+      </div>
     </div>
+  </nav>
 
-    <!-- 설명 -->
-    <div class="col-lg-5">
-      <h4>여행지 소개</h4>
-      <p id="detailDesc" class="mt-3"></p>
+  <!-- 대표 이미지 -->
+  <section class="py-5">
+    <div class="container">
+      <div class="card">
+        <img id="detailImage" class="card-img-top featured-img" alt="대표 이미지">
+      </div>
+    </div>
+  </section>
 
-      <hr>
-
-      <h5>이런 분께 추천해요</h5>
-      <ul id="detailTags">
-        <li>여름 여행</li>
-        <li>힐링</li>
-        <li>사진 명소</li>
+  <!-- 기본 정보 -->
+  <section class="pb-4">
+    <div class="container">
+      <h2 class="fw-bold mb-3" id="detailTitle"></h2>
+      <ul class="list-unstyled">
+        <li id="detailLocation">📍 위치:</li>
+        <li id="detailSeason">🗓 방문 가능 시기:</li>
       </ul>
-
-      <a href="summer.html" class="btn btn-outline-primary mt-3">← 여름 여행지로 돌아가기</a>
     </div>
+  </section>
 
-  </div>
-</div>
+  <hr>
 
-<script>
-/* 🔹 상세 데이터 (여름 공통) */
-const detailData = {
-  1: {
-    title: "부산 해운대",
-    subtitle: "대한민국 대표 여름 해변",
-    img: "assets/images/summer1.jpg",
-    desc: "부산 해운대는 여름이면 가장 많은 사람들이 찾는 대표적인 해변입니다. 넓은 백사장과 다양한 먹거리, 밤에는 화려한 야경까지 즐길 수 있어요."
-  },
-  2: {
-    title: "평창 흥정계곡",
-    subtitle: "자연 속에서 즐기는 시원한 여름",
-    img: "assets/images/summer2.jpg",
-    desc: "맑은 물과 울창한 숲이 어우러진 흥정계곡은 한여름에도 시원한 힐링 여행지입니다. 가족 단위 여행객에게 특히 추천해요."
-  },
-  3: {
-    title: "제주 협재해변",
-    subtitle: "에메랄드빛 바다",
-    img: "assets/images/summer3.jpg",
-    desc: "협재해변은 투명한 바다색과 고운 모래가 인상적인 제주 대표 해변입니다. 한적한 분위기에서 여유로운 시간을 보내기 좋아요."
-  },
-  4: {
-    title: "한강 야경",
-    subtitle: "여름 밤 산책 명소",
-    img: "assets/images/summer4.jpg",
-    desc: "여름밤 시원한 바람을 맞으며 즐기는 한강 산책은 도심 속 최고의 힐링 코스입니다."
-  },
+  <!-- 상세 설명 -->
+  <section class="py-4">
+    <div class="container">
+      <h4 class="fw-bold mb-3">상세 설명</h4>
+      <ul id="detailDesc"></ul>
+    </div>
+  </section>
 
-  /* 대표 카드용 */
-  100: {
-    title: "강릉 경포대",
-    subtitle: "초여름 바다 여행의 정석",
-    img: "assets/images/summer-main.jpg",
-    desc: "강릉 경포대는 푸른 바다와 호수가 어우러진 여름 대표 여행지로, 초여름에 특히 아름다운 풍경을 자랑합니다."
-  },
-  200: {
-    title: "포천 허브아일랜드",
-    subtitle: "여름 밤이 아름다운 여행지",
-    img: "최수진/Imgs/July1.jpg",
-    desc: "포천 허브아일랜드는 밤이 되면 조명으로 더욱 아름다워지는 명소로, 여름 밤 데이트 코스로 인기가 많습니다."
-  },
-  300: {
-    title: "파주 퍼스트가든",
-    subtitle: "늦여름 힐링 산책",
-    img: "최수진/Imgs/August1.jpg",
-    desc: "퍼스트가든은 정원과 산책로가 잘 조성된 공간으로, 성수기를 지난 늦여름에 여유롭게 즐기기 좋습니다."
-  }
-};
+  <hr>
 
-/* 🔹 URL 파라미터 id 가져오기 */
-const params = new URLSearchParams(location.search);
-const id = params.get("id");
+  <!-- 추가 이미지 -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <h4 class="fw-bold mb-4">추가 이미지</h4>
 
-/* 🔹 데이터 렌더링 */
-const data = detailData[id];
+      <div class="position-relative">
+        <div class="card">
+          <img id="detailSubImage" class="card-img-top" alt="추가 이미지">
+        </div>
 
-if (data) {
-  document.getElementById("detailTitle").innerText = data.title;
-  document.getElementById("detailSubtitle").innerText = data.subtitle;
-  document.getElementById("detailImg").src = data.img;
-  document.getElementById("detailDesc").innerText = data.desc;
-} else {
-  document.getElementById("detailTitle").innerText = "여행지 정보를 찾을 수 없습니다.";
-}
-</script>
+        <div class="d-flex justify-content-between mt-3">
+          <button class="btn btn-outline-secondary" type="button">&lt;</button>
+          <div class="text-muted">● ○ ○</div>
+          <button class="btn btn-outline-secondary" type="button">&gt;</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 하단 버튼 -->
+  <section class="py-5">
+    <div class="container text-center">
+      <div class="d-flex justify-content-center gap-3">
+        <button class="btn btn-outline-primary" onclick="location.href='favorites.html'">
+          찜하기 ♡
+        </button>
+        <button class="btn btn-outline-secondary" type="button">공유하기</button>
+        <a href="javascript:history.back()" class="btn btn-dark">뒤로가기</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright © GO-MONTH 2025</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    /* ======================
+       상세 데이터 (season -> id)
+       ====================== */
+    const detailData = {
+      spring: {
+        // featured
+        100: {
+          title: "3월 봄 대표 여행지",
+          img: "./assets/images/spring1.PNG",
+          subImg: "./assets/images/spring1.PNG",
+          location: "여의도",
+          season: "봄 (3~5월)",
+          desc: [
+            "3월에 가보면 좋은 대표 거리입니다.",
+            "벚꽃 개화 시작 시기라 산책하기 좋아요."
+          ]
+        },
+        200: {
+          title: "4월 봄 대표 여행지",
+          img: "./assets/images/spring2.jpg",
+          subImg: "./assets/images/spring2.jpg",
+          location: "여의도",
+          season: "봄 (3~5월)",
+          desc: [
+            "4월은 벚꽃이 절정인 시기입니다.",
+            "축제/야간 명소와 함께 즐기기 좋아요."
+          ]
+        },
+        300: {
+          title: "5월 봄 대표 여행지",
+          img: "./assets/images/spring3.jpg",
+          subImg: "./assets/images/spring3.jpg",
+          location: "여의도",
+          season: "봄 (3~5월)",
+          desc: [
+            "5월은 신록이 예쁜 계절입니다.",
+            "피크닉/트레킹 코스로 추천해요."
+          ]
+        },
+
+        // subs (spring.js에서 101,102 / 201,202 / 301,302 로 보냄)
+        101: {
+          title: "3월 테마 여행지 A",
+          img: "./assets/images/spring2.jpg",
+          subImg: "./assets/images/spring2.jpg",
+          location: "서울",
+          season: "봄 (3월)",
+          desc: [
+            "벚꽃길 산책 코스",
+            "사진 찍기 좋은 포인트가 많아요."
+          ]
+        },
+        102: {
+          title: "3월 테마 여행지 B",
+          img: "./assets/images/spring3.jpg",
+          subImg: "./assets/images/spring3.jpg",
+          location: "서울",
+          season: "봄 (3월)",
+          desc: [
+            "봄꽃 명소",
+            "포토 스팟으로 추천!"
+          ]
+        },
+
+        201: {
+          title: "4월 테마 여행지 A",
+          img: "./assets/images/spring1.PNG",
+          subImg: "./assets/images/spring1.PNG",
+          location: "경기",
+          season: "봄 (4월)",
+          desc: [
+            "축제/드라이브 코스",
+            "주말 나들이로 좋아요."
+          ]
+        },
+        202: {
+          title: "4월 테마 여행지 B",
+          img: "./assets/images/spring3.jpg",
+          subImg: "./assets/images/spring3.jpg",
+          location: "경기",
+          season: "봄 (4월)",
+          desc: [
+            "봄 감성 사진/야경",
+            "저녁 시간대도 예뻐요."
+          ]
+        },
+
+        301: {
+          title: "5월 테마 여행지 A",
+          img: "./assets/images/spring1.PNG",
+          subImg: "./assets/images/spring1.PNG",
+          location: "강원",
+          season: "봄 (5월)",
+          desc: [
+            "피크닉/공원/초록",
+            "도심 근교로 가볍게!"
+          ]
+        },
+        302: {
+          title: "5월 테마 여행지 B",
+          img: "./assets/images/spring2.jpg",
+          subImg: "./assets/images/spring2.jpg",
+          location: "강원",
+          season: "봄 (5월)",
+          desc: [
+            "트레킹/자연/힐링",
+            "산책로가 잘 되어 있어요."
+          ]
+        }
+      }
+    };
+
+    /* ======================
+       데이터 바인딩
+       ====================== */
+    const params = new URLSearchParams(location.search);
+    const season = params.get("season");  // spring
+    const id = params.get("id");          // 100,101...
+
+    const data = detailData[season]?.[id];
+
+    if (!data) {
+      document.getElementById("detailTitle").textContent = "여행지 정보를 찾을 수 없습니다.";
+    } else {
+      document.getElementById("detailTitle").textContent = data.title;
+      document.getElementById("detailImage").src = data.img;
+      document.getElementById("detailSubImage").src = data.subImg;
+      document.getElementById("detailLocation").textContent = "📍 위치: " + data.location;
+      document.getElementById("detailSeason").textContent = "🗓 방문 가능 시기: " + data.season;
+
+      const descUl = document.getElementById("detailDesc");
+      descUl.innerHTML = "";
+      data.desc.forEach(text => {
+        const li = document.createElement("li");
+        li.textContent = text;
+        descUl.appendChild(li);
+      });
+    }
+  </script>
 
 </body>
 </html>

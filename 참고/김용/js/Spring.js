@@ -9,7 +9,8 @@ const MONTH_DATA = {
       alt: "3월 봄대표 이미지",
       title: "3월 봄 대표 여행지",
       desc: "3월 추천: 벚꽃 개화 시작, 산책 코스",
-      link: "detail.html?month=3&pick=featured"
+      // ✅ 핵심: season + id
+      link: "detail.html?season=spring&id=100"
     },
     subs: [
       {
@@ -17,14 +18,14 @@ const MONTH_DATA = {
         alt: "3월 서브 이미지 A",
         title: "3월 테마 여행지 A",
         desc: "3월 테마: 벚꽃길/야외 산책",
-        link: "detail.html?month=3&pick=a"
+        link: "detail.html?season=spring&id=101"
       },
       {
         img: "assets/images/spring3.jpg",
         alt: "3월 서브 이미지 B",
         title: "3월 테마 여행지 B",
         desc: "3월 테마: 봄꽃 명소/포토 스팟",
-        link: "detail.html?month=3&pick=b"
+        link: "detail.html?season=spring&id=102"
       }
     ]
   },
@@ -36,7 +37,7 @@ const MONTH_DATA = {
       alt: "4월 봄대표 이미지",
       title: "4월 봄 대표 여행지",
       desc: "4월 추천: 벚꽃 절정, 축제/야간명소",
-      link: "detail.html?month=4&pick=featured"
+      link: "detail.html?season=spring&id=200"
     },
     subs: [
       {
@@ -44,14 +45,14 @@ const MONTH_DATA = {
         alt: "4월 서브 이미지 A",
         title: "4월 테마 여행지 A",
         desc: "4월 테마: 축제/드라이브 코스",
-        link: "detail.html?month=4&pick=a"
+        link: "detail.html?season=spring&id=201"
       },
       {
         img: "assets/images/spring3.jpg",
         alt: "4월 서브 이미지 B",
         title: "4월 테마 여행지 B",
         desc: "4월 테마: 봄 감성 사진/야경",
-        link: "detail.html?month=4&pick=b"
+        link: "detail.html?season=spring&id=202"
       }
     ]
   },
@@ -63,7 +64,7 @@ const MONTH_DATA = {
       alt: "5월 봄대표 이미지",
       title: "5월 봄 대표 여행지",
       desc: "5월 추천: 신록/초록, 피크닉/트레킹",
-      link: "detail.html?month=5&pick=featured"
+      link: "detail.html?season=spring&id=300"
     },
     subs: [
       {
@@ -71,50 +72,18 @@ const MONTH_DATA = {
         alt: "5월 서브 이미지 A",
         title: "5월 테마 여행지 A",
         desc: "5월 테마: 피크닉/공원/초록",
-        link: "detail.html?month=5&pick=a"
+        link: "detail.html?season=spring&id=301"
       },
       {
         img: "assets/images/spring2.jpg",
         alt: "5월 서브 이미지 B",
         title: "5월 테마 여행지 B",
         desc: "5월 테마: 트레킹/자연/힐링",
-        link: "detail.html?month=5&pick=b"
+        link: "detail.html?season=spring&id=302"
       }
     ]
   }
 };
-
-// 검색 풀(간단히 title/desc에 키워드 포함이면 매칭)
-const SEARCH_POOL = [
-  ...Object.entries(MONTH_DATA).flatMap(([month, data]) => {
-    const m = Number(month);
-    const list = [];
-
-    list.push({
-      month: m,
-      badge: data.featured.badge,
-      img: data.featured.img,
-      alt: data.featured.alt,
-      title: data.featured.title,
-      desc: data.featured.desc,
-      link: data.featured.link
-    });
-
-    data.subs.forEach((s, idx) => {
-      list.push({
-        month: m,
-        badge: "검색 결과",
-        img: s.img,
-        alt: s.alt,
-        title: s.title,
-        desc: s.desc,
-        link: s.link
-      });
-    });
-
-    return list;
-  })
-];
 
 // ============================
 // 2) DOM 유틸
@@ -165,9 +134,6 @@ function renderSubs(subs, month) {
   const area = document.getElementById("subArea");
   if (!area) return;
 
-  area.innerHTML = "";
-
-  // 서브 2개 기준으로 만들었음 (원하면 3개도 가능)
   area.innerHTML = subs.map(item => `
     <div class="col-lg-6">
       <div class="card mb-4">
@@ -191,20 +157,27 @@ function renderMonth(month) {
   renderSubs(data.subs, month);
   setActiveMonthBtn(month);
 
-  // URL month 유지
+  // URL month 유지(선택사항)
   const url = new URL(window.location.href);
   url.searchParams.set("month", String(month));
   history.replaceState(null, "", url.toString());
 }
 
 // ============================
-// 4) 검색
+// 4) 검색(옵션)
 // ============================
 function search(keyword) {
   const kw = (keyword || "").trim().toLowerCase();
   if (!kw) return;
 
-  const found = SEARCH_POOL.find(x =>
+  // featured + subs 모두 검색
+  const pool = [];
+  Object.entries(MONTH_DATA).forEach(([m, data]) => {
+    pool.push({ month: Number(m), ...data.featured });
+    data.subs.forEach(s => pool.push({ month: Number(m), ...s, badge: "검색 결과" }));
+  });
+
+  const found = pool.find(x =>
     (x.title || "").toLowerCase().includes(kw) ||
     (x.desc || "").toLowerCase().includes(kw)
   );
@@ -214,14 +187,11 @@ function search(keyword) {
     return;
   }
 
-  // 해당 월로 화면 맞추고
   renderMonth(found.month);
-
-  // 찾은 결과를 메인(대표 카드)에 올려 보여주기
   renderFeatured({
-    badge: found.badge,
+    badge: found.badge || "검색 결과",
     img: found.img,
-    alt: "검색 결과 이미지",
+    alt: found.alt,
     title: found.title,
     desc: `검색 결과: ${found.desc}`,
     link: found.link
@@ -246,7 +216,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // 검색
   const input = document.getElementById("searchInput");
   const btn = document.getElementById("searchBtn");
-
   if (btn && input) {
     btn.addEventListener("click", () => search(input.value));
     input.addEventListener("keydown", (e) => {
@@ -254,7 +223,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 초기 월(쿼리스트링 있으면 그걸로)
+  // 초기 월
   const params = new URLSearchParams(location.search);
   const startMonth = Number(params.get("month")) || 3;
   renderMonth(startMonth);
