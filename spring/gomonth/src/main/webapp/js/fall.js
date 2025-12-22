@@ -85,6 +85,7 @@ function renderList(list) {
   });
 }
 
+
 // 버튼 클릭 이벤트 설정
 document.querySelectorAll(".btn-month").forEach((btn) => {
   btn.onclick = () => {
