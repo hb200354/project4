@@ -67,7 +67,7 @@ function renderMonth(month) {
 
 function renderList(list) {
   placeList.innerHTML = "";
-  list.forEach(p => {
+  list.forEach((p) => {
     placeList.innerHTML += `
       <div class="col-lg-6 mb-4">
         <div class="card h-100">
@@ -75,7 +75,7 @@ function renderList(list) {
           <div class="card-body">
             <h5>${p.title}</h5>
             <p>${p.desc}</p>
-            <a href="${cpath}/detail?id=${p.id}" class="btn btn-primary btn-sm">
+            <a href="${cpath}/detail?id=${p.id}&img=${encodeURIComponent(p.img)}" class="btn btn-primary btn-sm">
               자세히 보기 →
             </a>
           </div>
@@ -84,6 +84,7 @@ function renderList(list) {
     `;
   });
 }
+
 
 // 버튼 클릭 이벤트 설정
 document.querySelectorAll(".btn-month").forEach((btn) => {
