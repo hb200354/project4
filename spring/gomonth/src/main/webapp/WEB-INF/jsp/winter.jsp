@@ -43,7 +43,7 @@
                             <div class="card mb-5 featured-banner filter-item" data-month="${p.monthVal}" data-title="${p.title}">
                                 <div class="row g-0">
                                     <div class="col-md-7">
-                                        <img src="<%=cpath%>/assets/images/winter/${p.listImg}" class="img-fluid h-100" style="object-fit: cover; min-height: 380px;" onerror="this.src='<%=cpath%>/assets/images/default_banner.jpg'">
+                                        <img src="<%=cpath%>/assets/images/winter/${p.listImg}" class="featured-img">
                                     </div>
                                     <div class="col-md-5 d-flex align-items-center">
                                         <div class="card-body p-4 p-lg-5">

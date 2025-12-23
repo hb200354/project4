@@ -24,10 +24,16 @@
          onerror="this.src='<%=cpath%>/assets/images/default_banner.jpg'">
 </div>
 
+<%-- 상단 정보바 영역 수정 --%>
 <div class="date-info-bar">
     <div>
         <span class="date-tag">BEST SEASON</span>
-        <span id="placeSeason" class="fw-bold fs-5">${place.seasonNote}</span>
+        <%-- tips 리스트의 마지막 content를 출력 --%>
+        <c:forEach var="tip" items="${place.tips}" varStatus="status">
+            <c:if test="${status.last}">
+                <span id="placeSeason" class="fw-bold fs-5">${tip.content}</span>
+            </c:if>
+        </c:forEach>
     </div>
     <div id="placeLocation" class="opacity-50 small fw-bold">${place.location}</div>
 </div>
@@ -39,16 +45,13 @@
   
             <div id="pointsList">
                 <c:forEach var="tip" items="${place.tips}" varStatus="status">
-                    <div class="guide-item">
-                        <span class="guide-label">
-                            <c:choose>
-                                <%-- 마지막 데이터(ORDER_NO가 가장 큰 것)는 추천 날짜로 표시 --%>
-                                <c:when test="${status.last}">RECOMMENDED DATE</c:when>
-                                <c:otherwise>Feature Point 0${status.count}</c:otherwise>
-                            </c:choose>
-                        </span>
-                        <div class="guide-text">${tip.content}</div>
-                    </div>
+                    <%-- 마지막 데이터(상단으로 보낸 것)를 제외한 나머지만 리스트에 표시 --%>
+                    <c:if test="${!status.last}">
+                        <div class="guide-item">
+                            <span class="guide-label">Feature Point 0${status.count}</span>
+                            <div class="guide-text">${tip.content}</div>
+                        </div>
+                    </c:if>
                 </c:forEach>
             </div>
         </div>

@@ -11,8 +11,8 @@ public class PlaceService {
     @Autowired
     private PlaceMapper placeMapper;
 
-    public List<PlaceDTO> getWinterPlaces() {
-        return placeMapper.getWinterPlaces();
+    public List<PlaceDTO> getPlacesBySeason(String seasonType) {
+        return placeMapper.getPlacesBySeason(seasonType);
     }
 
     public PlaceDTO getPlaceDetail(String id) {

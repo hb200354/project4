@@ -11,26 +11,27 @@
         <result property="seasonNote" column="SEASON_NOTE"/>
         <result property="seasonType" column="SEASON_TYPE"/>
         <result property="isFeatured" column="IS_FEATURED"/>
-        <result property="monthVal" column="MONTH_VAL"/> <collection property="tips" ofType="com.gomonth.dto.PlaceTipDTO">
+        <result property="monthVal" column="MONTH_VAL"/>
+        <collection property="tips" ofType="com.gomonth.dto.PlaceTipDTO">
             <result property="content" column="CONTENT"/>
             <result property="orderNo" column="ORDER_NO"/>
         </collection>
     </resultMap>
 
-    <select id="getWinterPlaces" resultMap="PlaceDetailMap">
+    <select id="getPlacesBySeason" resultMap="PlaceDetailMap">
         SELECT p.*, s.IS_FEATURED, s.SEASON_TYPE, s.MONTH_VAL
         FROM PLACES p
         JOIN PLACE_SEASONS s ON p.PLACE_ID = s.PLACE_ID
-        WHERE s.SEASON_TYPE = 'winter'
+        WHERE s.SEASON_TYPE = #{seasonType}
     </select>
     
     <select id="getPlaceDetail" resultMap="PlaceDetailMap">
         SELECT p.*, s.SEASON_TYPE, s.IS_FEATURED, t.CONTENT, t.ORDER_NO
         FROM PLACES p
-        LEFT JOIN PLACE_SEASONS s ON p.PLACE_ID = s.PLACE_ID
+        JOIN PLACE_SEASONS s ON p.PLACE_ID = s.PLACE_ID
         LEFT JOIN PLACE_TIPS t ON p.PLACE_ID = t.PLACE_ID
         WHERE p.PLACE_ID = #{id}
         ORDER BY t.ORDER_NO ASC
     </select>
-
+    
 </mapper>

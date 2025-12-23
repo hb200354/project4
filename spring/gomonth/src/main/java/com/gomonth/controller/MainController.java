@@ -31,7 +31,9 @@ public class MainController {
     }
 
     @GetMapping("/summer")
-    public String summer() {
+    public String summer(Model model) {
+        List<PlaceDTO> summerPlaces = placeService.getPlacesBySeason("summer");
+        model.addAttribute("summerPlaces", summerPlaces); 
         return "summer";
     }
 
@@ -42,8 +44,8 @@ public class MainController {
 
     @GetMapping("/winter")
     public String winter(Model model) {
-        List<PlaceDTO> winterPlaces = placeService.getWinterPlaces();
-        model.addAttribute("winterPlaces", winterPlaces); // 
+        List<PlaceDTO> winterPlaces = placeService.getPlacesBySeason("winter");
+        model.addAttribute("winterPlaces", winterPlaces); 
         return "winter";
     }
 
