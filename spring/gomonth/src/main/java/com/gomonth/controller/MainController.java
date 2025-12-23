@@ -26,7 +26,9 @@ public class MainController {
     }
 
     @GetMapping("/spring")
-    public String spring() {
+    public String spring(Model model) {
+        List<PlaceDTO> springPlaces = placeService.getPlacesBySeason("spring");
+        model.addAttribute("springPlaces", springPlaces); 
         return "spring";
     }
 

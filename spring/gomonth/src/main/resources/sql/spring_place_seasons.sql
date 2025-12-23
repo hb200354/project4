@@ -1,0 +1,19 @@
+-- 3월 매핑 
+INSERT INTO PLACE_SEASONS VALUES ('S0301', 'spr01', 'spring', 3, 'Y');
+INSERT INTO PLACE_SEASONS VALUES ('S0302', 'spr02', 'spring', 3, 'N');
+INSERT INTO PLACE_SEASONS VALUES ('S0303', 'spr03', 'spring', 3, 'N');
+INSERT INTO PLACE_SEASONS VALUES ('S0304', 'spr04', 'spring', 3, 'N');
+
+-- 4월 매핑 
+INSERT INTO PLACE_SEASONS VALUES ('S0401', 'spr05', 'spring', 4, 'Y');
+INSERT INTO PLACE_SEASONS VALUES ('S0402', 'spr06', 'spring', 4, 'N');
+INSERT INTO PLACE_SEASONS VALUES ('S0403', 'spr07', 'spring', 4, 'N');
+INSERT INTO PLACE_SEASONS VALUES ('S0404', 'spr08', 'spring', 4, 'N');
+
+-- 5월 매핑 
+INSERT INTO PLACE_SEASONS VALUES ('S0501', 'spr09', 'spring', 5, 'Y');
+INSERT INTO PLACE_SEASONS VALUES ('S0502', 'spr10', 'spring', 5, 'N');
+INSERT INTO PLACE_SEASONS VALUES ('S0503', 'spr11', 'spring', 5, 'N');
+INSERT INTO PLACE_SEASONS VALUES ('S0504', 'spr12', 'spring', 5, 'N');
+
+COMMIT;

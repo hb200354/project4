@@ -29,7 +29,7 @@
       <div class="row g-4">
         <div class="col-sm-6 col-lg-3">
           <div class="season-card">
-            <img src="<%=request.getContextPath()%>/assets/images/spring1.png" class="card-img" alt="봄">
+            <img src="<%=request.getContextPath()%>/assets/images/spring-main.jpg" class="card-img" alt="봄">
             <div class="card-overlay">
               <h5>봄</h5>
               <p>꽃향기와 설레는 산책</p>
