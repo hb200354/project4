@@ -1,12 +1,19 @@
 package com.gomonth.controller;
 
-
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.gomonth.dto.PlaceDTO;
+import com.gomonth.service.PlaceService; 
+
 @Controller
 public class MainController {
+    @Autowired
+    private PlaceService placeService;
 
     @GetMapping("/")
     public String index() {
@@ -34,12 +41,16 @@ public class MainController {
     }
 
     @GetMapping("/winter")
-    public String winter() {
+    public String winter(Model model) {
+        List<PlaceDTO> winterPlaces = placeService.getWinterPlaces();
+        model.addAttribute("winterPlaces", winterPlaces); // 
         return "winter";
     }
 
     @GetMapping("/detail")
-    public String detail(@RequestParam("id") String id) {
+    public String detail(@RequestParam("id") String id, Model model) {
+        PlaceDTO place = placeService.getPlaceDetail(id); 
+        model.addAttribute("place", place); 
         return "detail";
     }
 

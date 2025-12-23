@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gomonth.dao.PlaceMapper">
+
+    <resultMap id="PlaceDetailMap" type="com.gomonth.dto.PlaceDTO">
+        <id property="placeId" column="PLACE_ID"/>
+        <result property="title" column="TITLE"/>
+        <result property="location" column="LOCATION"/>
+        <result property="bannerImg" column="BANNER_IMG"/>
+        <result property="listImg" column="LIST_IMG"/>
+        <result property="seasonNote" column="SEASON_NOTE"/>
+        <result property="seasonType" column="SEASON_TYPE"/>
+        <result property="isFeatured" column="IS_FEATURED"/>
+        <result property="monthVal" column="MONTH_VAL"/> <collection property="tips" ofType="com.gomonth.dto.PlaceTipDTO">
+            <result property="content" column="CONTENT"/>
+            <result property="orderNo" column="ORDER_NO"/>
+        </collection>
+    </resultMap>
+
+    <select id="getWinterPlaces" resultMap="PlaceDetailMap">
+        SELECT p.*, s.IS_FEATURED, s.SEASON_TYPE, s.MONTH_VAL
+        FROM PLACES p
+        JOIN PLACE_SEASONS s ON p.PLACE_ID = s.PLACE_ID
+        WHERE s.SEASON_TYPE = 'winter'
+    </select>
+    
+    <select id="getPlaceDetail" resultMap="PlaceDetailMap">
+        SELECT p.*, s.SEASON_TYPE, s.IS_FEATURED, t.CONTENT, t.ORDER_NO
+        FROM PLACES p
+        LEFT JOIN PLACE_SEASONS s ON p.PLACE_ID = s.PLACE_ID
+        LEFT JOIN PLACE_TIPS t ON p.PLACE_ID = t.PLACE_ID
+        WHERE p.PLACE_ID = #{id}
+        ORDER BY t.ORDER_NO ASC
+    </select>
+
+</mapper>
