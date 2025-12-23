@@ -1,148 +1,137 @@
 // ============================
-// 1) 월별 데이터 (여기만 바꾸면 내용 바뀜)
+// 1) 월별 데이터
 // ============================
 const MONTH_DATA = {
+  /* =========================
+     3월
+  ========================= */
   3: {
     featured: {
       badge: "SPRING PICK",
       img: "assets/images/spring1.PNG",
       alt: "3월 봄대표 이미지",
       title: "3월 봄 대표 여행지",
-      desc: "3월 추천: 벚꽃 개화 시작, 산책 코스",
-      // ✅ 핵심: season + id
+      desc: "산수유·매화·유채꽃으로 봄의 시작을 알리는 여행",
       link: "detail.html?season=spring&id=100"
     },
     subs: [
       {
-        img: "assets/images/spring2.jpg",
-        alt: "3월 서브 이미지 A",
-        title: "3월 테마 여행지 A",
-        desc: "3월 테마: 벚꽃길/야외 산책",
+        img: "assets/images/03_gurye.jpg",
+        title: "구례 산수유 마을",
+        desc: "노란 산수유 꽃이 마을 전체를 물들이는 3월 대표 봄꽃 여행지",
         link: "detail.html?season=spring&id=101"
       },
       {
-        img: "assets/images/spring3.jpg",
-        alt: "3월 서브 이미지 B",
-        title: "3월 테마 여행지 B",
-        desc: "3월 테마: 봄꽃 명소/포토 스팟",
+        img: "assets/images/03_jeju.jpg",
+        title: "제주도 유채꽃 시즌",
+        desc: "푸른 바다와 노란 유채꽃이 어우러지는 제주 봄 풍경",
         link: "detail.html?season=spring&id=102"
+      },
+      {
+        img: "assets/images/03_gwangya.jpg",
+        title: "광양 매화마을",
+        desc: "매화 향기 가득한 봄 축제와 사진 명소",
+        link: "detail.html?season=spring&id=103"
       }
     ]
   },
 
+  /* =========================
+     4월
+  ========================= */
   4: {
     featured: {
       badge: "APRIL PICK",
       img: "assets/images/spring2.jpg",
       alt: "4월 봄대표 이미지",
       title: "4월 봄 대표 여행지",
-      desc: "4월 추천: 벚꽃 절정, 축제/야간명소",
+      desc: "벚꽃이 절정을 이루는 완연한 봄 여행",
       link: "detail.html?season=spring&id=200"
     },
     subs: [
       {
-        img: "assets/images/spring1.PNG",
-        alt: "4월 서브 이미지 A",
-        title: "4월 테마 여행지 A",
-        desc: "4월 테마: 축제/드라이브 코스",
+        img: "assets/images/04_gyeongju.jpg",
+        title: "경주 영지 둘레길",
+        desc: "역사 유적과 벚꽃길을 함께 즐길 수 있는 산책 코스",
         link: "detail.html?season=spring&id=201"
       },
       {
-        img: "assets/images/spring3.jpg",
-        alt: "4월 서브 이미지 B",
-        title: "4월 테마 여행지 B",
-        desc: "4월 테마: 봄 감성 사진/야경",
+        img: "assets/images/04_jinhae.jpg",
+        title: "진해 군항제",
+        desc: "전국 최대 규모의 벚꽃 축제로 유명한 봄 축제 명소",
         link: "detail.html?season=spring&id=202"
+      },
+      {
+        img: "assets/images/04_damyang.jpg",
+        title: "담양 죽녹원",
+        desc: "대나무 숲에서 느끼는 조용한 힐링 산책 여행",
+        link: "detail.html?season=spring&id=203"
       }
     ]
   },
 
+  /* =========================
+     5월
+  ========================= */
   5: {
     featured: {
       badge: "MAY PICK",
       img: "assets/images/spring3.jpg",
       alt: "5월 봄대표 이미지",
       title: "5월 봄 대표 여행지",
-      desc: "5월 추천: 신록/초록, 피크닉/트레킹",
+      desc: "초록이 가장 아름다운 계절, 자연 속 힐링 여행",
       link: "detail.html?season=spring&id=300"
     },
     subs: [
       {
-        img: "assets/images/spring1.PNG",
-        alt: "5월 서브 이미지 A",
-        title: "5월 테마 여행지 A",
-        desc: "5월 테마: 피크닉/공원/초록",
+        img: "assets/images/05_boseong.jpg",
+        title: "보성 녹차밭",
+        desc: "끝없이 펼쳐진 녹차밭과 초록 물결이 인상적인 여행지",
         link: "detail.html?season=spring&id=301"
       },
       {
-        img: "assets/images/spring2.jpg",
-        alt: "5월 서브 이미지 B",
-        title: "5월 테마 여행지 B",
-        desc: "5월 테마: 트레킹/자연/힐링",
+        img: "assets/images/05_damyang.jpg",
+        title: "담양 메타세콰이어길",
+        desc: "산책과 드라이브 모두 좋은 감성 가득한 길",
         link: "detail.html?season=spring&id=302"
+      },
+      {
+        img: "assets/images/05_jeju.jpg",
+        title: "한라산 철쭉",
+        desc: "5월에만 만날 수 있는 철쭉 군락과 봄 산행",
+        link: "detail.html?season=spring&id=303"
       }
     ]
   }
 };
 
 // ============================
-// 2) DOM 유틸
+// DOM 유틸
 // ============================
 function $(sel) { return document.querySelector(sel); }
 function $all(sel) { return document.querySelectorAll(sel); }
 
-function scrollToMain() {
-  const target = document.getElementById("mainArea");
-  if (!target) return;
-  target.scrollIntoView({ behavior: "smooth", block: "start" });
-}
-
-function setActiveMonthBtn(month) {
-  $all(".btn-month").forEach(btn => {
-    btn.classList.remove("btn-dark", "active");
-    btn.classList.add("btn-outline-dark");
-  });
-
-  const active = document.querySelector(`.btn-month[data-month="${month}"]`);
-  if (active) {
-    active.classList.remove("btn-outline-dark");
-    active.classList.add("btn-dark", "active");
-  }
-}
-
 // ============================
-// 3) 렌더링
+// 렌더링
 // ============================
-function renderFeatured(featured) {
-  const img = $(".featured-img");
-  const badge = $("#featuredBadge");
-  const title = $("#featuredTitle");
-  const desc = $("#featuredDesc");
-  const link = $("#featuredLink");
-
-  if (!img || !badge || !title || !desc || !link) return;
-
-  img.src = featured.img;
-  img.alt = featured.alt || "대표 이미지";
-  badge.textContent = featured.badge || "";
-  title.textContent = featured.title || "";
-  desc.textContent = featured.desc || "";
-  link.href = featured.link || "detail.html";
+function renderFeatured(data) {
+  $(".featured-img").src = data.img;
+  $("#featuredBadge").textContent = data.badge;
+  $("#featuredTitle").textContent = data.title;
+  $("#featuredDesc").textContent = data.desc;
+  $("#featuredLink").href = data.link;
 }
 
-function renderSubs(subs, month) {
-  const area = document.getElementById("subArea");
-  if (!area) return;
-
-  area.innerHTML = subs.map(item => `
+function renderSubs(list) {
+  const area = $("#subArea");
+  area.innerHTML = list.map(item => `
     <div class="col-lg-6">
       <div class="card mb-4">
-        <img class="card-img-top" src="${item.img}" alt="${item.alt || (month + "월 서브 이미지")}">
+        <img class="card-img-top" src="${item.img}">
         <div class="card-body">
-          <div class="small text-muted">봄 테마</div>
-          <h2 class="card-title h4">${item.title}</h2>
-          <p class="card-text">${item.desc}</p>
-          <a class="btn btn-primary" href="${item.link}">자세히 보기 →</a>
+          <h5>${item.title}</h5>
+          <p>${item.desc}</p>
+          <a href="${item.link}" class="btn btn-primary">자세히 보기 →</a>
         </div>
       </div>
     </div>
@@ -152,79 +141,19 @@ function renderSubs(subs, month) {
 function renderMonth(month) {
   const data = MONTH_DATA[month];
   if (!data) return;
-
   renderFeatured(data.featured);
-  renderSubs(data.subs, month);
-  setActiveMonthBtn(month);
-
-  // URL month 유지(선택사항)
-  const url = new URL(window.location.href);
-  url.searchParams.set("month", String(month));
-  history.replaceState(null, "", url.toString());
+  renderSubs(data.subs);
 }
 
 // ============================
-// 4) 검색(옵션)
-// ============================
-function search(keyword) {
-  const kw = (keyword || "").trim().toLowerCase();
-  if (!kw) return;
-
-  // featured + subs 모두 검색
-  const pool = [];
-  Object.entries(MONTH_DATA).forEach(([m, data]) => {
-    pool.push({ month: Number(m), ...data.featured });
-    data.subs.forEach(s => pool.push({ month: Number(m), ...s, badge: "검색 결과" }));
-  });
-
-  const found = pool.find(x =>
-    (x.title || "").toLowerCase().includes(kw) ||
-    (x.desc || "").toLowerCase().includes(kw)
-  );
-
-  if (!found) {
-    alert("검색 결과가 없습니다.");
-    return;
-  }
-
-  renderMonth(found.month);
-  renderFeatured({
-    badge: found.badge || "검색 결과",
-    img: found.img,
-    alt: found.alt,
-    title: found.title,
-    desc: `검색 결과: ${found.desc}`,
-    link: found.link
-  });
-
-  scrollToMain();
-}
-
-// ============================
-// 5) 이벤트 연결 + 초기 실행
+// 초기 실행
 // ============================
 document.addEventListener("DOMContentLoaded", () => {
-  // 월 버튼 클릭
+  renderMonth(3);
+
   $all(".btn-month").forEach(btn => {
     btn.addEventListener("click", () => {
-      const month = Number(btn.dataset.month);
-      renderMonth(month);
-      scrollToMain();
+      renderMonth(Number(btn.dataset.month));
     });
   });
-
-  // 검색
-  const input = document.getElementById("searchInput");
-  const btn = document.getElementById("searchBtn");
-  if (btn && input) {
-    btn.addEventListener("click", () => search(input.value));
-    input.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") search(input.value);
-    });
-  }
-
-  // 초기 월
-  const params = new URLSearchParams(location.search);
-  const startMonth = Number(params.get("month")) || 3;
-  renderMonth(startMonth);
 });
