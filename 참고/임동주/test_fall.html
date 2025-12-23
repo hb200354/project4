@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>가을 여행지 | GO-MONTH</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- 공통 CSS -->
+  <link href="css/styles.css" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- =======================
+ 네비게이션
+======================= -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark position-relative">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="index.html">GO-MONTH</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+      <ul class="navbar-nav position-lg-absolute start-50 translate-middle-x">
+        <li class="nav-item"><a class="nav-link" href="spring.html">봄</a></li>
+        <li class="nav-item"><a class="nav-link" href="summer.html">여름</a></li>
+        <li class="nav-item"><a class="nav-link active" href="fall.html">가을</a></li>
+        <li class="nav-item"><a class="nav-link" href="winter.html">겨울</a></li>
+      </ul>
+    </div>
+
+    <div class="d-none d-lg-block">
+      <a class="btn btn-outline-light btn-login" href="login.html">로그인</a>
+    </div>
+  </div>
+</nav>
+
+<!-- =======================
+ 헤더
+======================= -->
+<header class="py-5 bg-light border-bottom mb-4 text-center">
+  <h1 class="fw-bolder">가을에 떠나기 좋은 여행지</h1>
+  <p class="lead mb-0">9월 · 10월 · 11월 가을 여행 추천</p>
+</header>
+
+<!-- =======================
+ 월 버튼
+======================= -->
+<section class="py-4">
+  <div class="container d-flex gap-2">
+    <button class="btn btn-dark btn-month" data-month="9">9월</button>
+    <button class="btn btn-outline-dark btn-month" data-month="10">10월</button>
+    <button class="btn btn-outline-dark btn-month" data-month="11">11월</button>
+  </div>
+</section>
+
+<!-- =======================
+ 콘텐츠
+======================= -->
+<div class="container">
+  <div class="row">
+
+    <!-- 메인 -->
+    <div class="col-lg-8">
+
+      <!-- 대표 카드 -->
+      <div class="card mb-4">
+        <img id="featuredImg" class="card-img-top featured-img" alt="가을 대표 여행지">
+        <div class="card-body">
+          <div class="small text-muted">AUTUMN PICK</div>
+          <h2 id="featuredTitle"></h2>
+          <p id="featuredDesc"></p>
+          <a id="featuredLink" class="btn btn-primary btn-sm">자세히 보기 →</a>
+        </div>
+      </div>
+
+      <!-- 카드 목록 -->
+      <div class="row" id="placeList"></div>
+    </div>
+
+    <!-- 사이드 -->
+    <div class="col-lg-4">
+
+      <div class="card mb-4">
+        <div class="card-header">여행지 검색</div>
+        <div class="card-body">
+          <input class="form-control mb-2" placeholder="여행지 검색">
+          <button class="btn btn-primary w-100">검색</button>
+        </div>
+      </div>
+
+      <div class="card mb-4">
+        <div class="card-header">가을 여행 테마</div>
+        <div class="card-body">
+          <ul class="list-unstyled mb-0">
+            <li>🍁 단풍 명소</li>
+            <li>🥾 트레킹</li>
+            <li>📸 감성 사진</li>
+            <li>☕ 가을 카페</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card mb-4">
+        <div class="card-header">가을 여행 한 줄 팁</div>
+        <div class="card-body" id="tipBox"></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+/* =======================
+ 이미지 경로 (최종)
+======================= */
+const IMG_FALL = "../통합/assets/images/";
+
+/* =======================
+ 가을 데이터 (월별 4개)
+======================= */
+const fallData = {
+  9: {
+    featured: { id:201, title:"담양 메타세쿼이아길", desc:"초가을 산책 감성 코스", img:IMG_FALL+"fall-damyang-metasequoia.jpg" },
+    tip:"9월은 선선해서 걷기 여행이 제일 좋습니다 🍃",
+    list:[
+      { id:201, title:"담양 메타세쿼이아길", img:IMG_FALL+"fall-damyang-metasequoia.jpg", desc:"초가을 대표 산책" },
+      { id:202, title:"강릉 안반데기", img:IMG_FALL+"fall-anbandae.jpg", desc:"고원 풍경 감성" },
+      { id:203, title:"하늘공원", img:IMG_FALL+"fall-haneul-park.jpg", desc:"가을풀·노을" },
+      { id:204, title:"순천만습지", img:IMG_FALL+"fall-suncheonman.jpg", desc:"갈대가 물드는 계절" }
+    ]
+  },
+  10: {
+    featured: { id:206, title:"내장산 국립공원", desc:"전국 최고의 단풍 명소", img:IMG_FALL+"fall-naejangsan.jpg" },
+    tip:"10월은 단풍 메인 시즌입니다 🍁",
+    list:[
+      { id:205, title:"설악산 국립공원", img:IMG_FALL+"fall-seoraksan.jpg", desc:"단풍 시작" },
+      { id:206, title:"내장산 국립공원", img:IMG_FALL+"fall-naejangsan.jpg", desc:"단풍 절정" },
+      { id:207, title:"문경새재", img:IMG_FALL+"fall-mungyeong-saejae.jpg", desc:"고갯길 트레킹" },
+      { id:208, title:"주왕산 국립공원", img:IMG_FALL+"fall-juwangsan.jpg", desc:"계곡 단풍" }
+    ]
+  },
+  11: {
+    featured: { id:209, title:"백양사", desc:"늦가을 단풍 사찰", img:IMG_FALL+"fall-baekyangsa.jpg" },
+    tip:"11월은 남부·제주가 안정적입니다 ☕",
+    list:[
+      { id:209, title:"백양사", img:IMG_FALL+"fall-baekyangsa.jpg", desc:"사찰 단풍 감성" },
+      { id:210, title:"제주 오름", img:IMG_FALL+"fall-jeju-oreum.jpg", desc:"늦가을 트레킹" },
+      { id:211, title:"남이섬", img:IMG_FALL+"fall-namiseom.jpg", desc:"가을 산책" },
+      { id:212, title:"경주 불국사", img:IMG_FALL+"fall-bulguksa.jpg", desc:"따뜻한 분위기" }
+    ]
+  }
+};
+
+/* =======================
+ 렌더링
+======================= */
+const featuredImg = document.getElementById("featuredImg");
+const featuredTitle = document.getElementById("featuredTitle");
+const featuredDesc = document.getElementById("featuredDesc");
+const featuredLink = document.getElementById("featuredLink");
+const placeList = document.getElementById("placeList");
+const tipBox = document.getElementById("tipBox");
+
+function renderMonth(m){
+  const d = fallData[m];
+  featuredImg.src = d.featured.img;
+  featuredTitle.textContent = d.featured.title;
+  featuredDesc.textContent = d.featured.desc;
+  featuredLink.href = `detail.html?id=${d.featured.id}`;
+  tipBox.textContent = d.tip;
+
+  placeList.innerHTML = "";
+  d.list.forEach(p=>{
+    placeList.innerHTML += `
+      <div class="col-lg-6 mb-4">
+        <div class="card h-100">
+          <img src="${p.img}" class="card-img-top" alt="${p.title}">
+          <div class="card-body">
+            <h5>${p.title}</h5>
+            <p>${p.desc}</p>
+            <a href="detail.html?id=${p.id}" class="btn btn-primary btn-sm">자세히 보기 →</a>
+          </div>
+        </div>
+      </div>`;
+  });
+}
+
+document.querySelectorAll(".btn-month").forEach(btn=>{
+  btn.onclick=()=>{
+    document.querySelectorAll(".btn-month").forEach(b=>{
+      b.classList.replace("btn-dark","btn-outline-dark");
+    });
+    btn.classList.replace("btn-outline-dark","btn-dark");
+    renderMonth(Number(btn.dataset.month));
+  };
+});
+
+/* 기본 시작: 9월 */
+renderMonth(9);
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
