@@ -1,0 +1,19 @@
+-- 6월 (sum01~04)
+INSERT INTO PLACE_SEASONS VALUES ('S0601', 'sum01', 'summer', 6, 'Y');
+INSERT INTO PLACE_SEASONS VALUES ('S0602', 'sum02', 'summer', 6, 'N');
+INSERT INTO PLACE_SEASONS VALUES ('S0603', 'sum03', 'summer', 6, 'N');
+INSERT INTO PLACE_SEASONS VALUES ('S0604', 'sum04', 'summer', 6, 'N');
+
+-- 7월 (sum05~08)
+INSERT INTO PLACE_SEASONS VALUES ('S0701', 'sum05', 'summer', 7, 'Y');
+INSERT INTO PLACE_SEASONS VALUES ('S0702', 'sum06', 'summer', 7, 'N');
+INSERT INTO PLACE_SEASONS VALUES ('S0703', 'sum07', 'summer', 7, 'N');
+INSERT INTO PLACE_SEASONS VALUES ('S0704', 'sum08', 'summer', 7, 'N');
+
+-- 8월 (sum09~12)
+INSERT INTO PLACE_SEASONS VALUES ('S0801', 'sum09', 'summer', 8, 'Y');
+INSERT INTO PLACE_SEASONS VALUES ('S0802', 'sum10', 'summer', 8, 'N');
+INSERT INTO PLACE_SEASONS VALUES ('S0803', 'sum11', 'summer', 8, 'N');
+INSERT INTO PLACE_SEASONS VALUES ('S0804', 'sum12', 'summer', 8, 'N');
+
+COMMIT;
