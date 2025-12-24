@@ -31,17 +31,24 @@
                     <div class="mb-3">
                         <input type="text" name="userId" class="form-control border-0 bg-light py-3" placeholder="아이디" required style="border-radius:12px;">
                     </div>
+                    
+                    <div class="mb-3">
+                        <input type="text" name="userName" class="form-control border-0 bg-light py-3" placeholder="사용할 닉네임" required style="border-radius:12px;">
+                    </div>
+
                     <div class="row mb-3">
                         <div class="col-6">
-                            <input type="password" name="userPw" class="form-control border-0 bg-light py-3" placeholder="비밀번호" required style="border-radius:12px;">
+                            <input type="password" name="userPw" id="userPw" class="form-control border-0 bg-light py-3" placeholder="비밀번호" required style="border-radius:12px;">
                         </div>
                         <div class="col-6">
-                            <input type="password" class="form-control border-0 bg-light py-3" placeholder="비밀번호 확인" required style="border-radius:12px;">
+                            <input type="password" id="userPwConfirm" class="form-control border-0 bg-light py-3" placeholder="비밀번호 확인" required style="border-radius:12px;">
                         </div>
                     </div>
+                    
                     <div class="mb-4">
                         <input type="email" name="email" class="form-control border-0 bg-light py-3" placeholder="이메일 주소" required style="border-radius:12px;">
                     </div>
+                    
                     <button type="submit" class="btn btn-primary w-100 py-3 fw-bold mb-4" style="border-radius:12px;">회원가입</button>
                     
                     <div class="text-center text-muted small">

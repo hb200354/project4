@@ -46,5 +46,11 @@
             </div>
         </div>
     </div>
+    <script>
+        const errorMsg = "${error}";
+        if (errorMsg) {
+            alert(errorMsg);
+        }
+    </script>
 </body>
 </html>

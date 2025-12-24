@@ -5,16 +5,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gomonth.dto.PlaceDTO;
-import com.gomonth.service.PlaceService; 
+import com.gomonth.service.PlaceService;
+
+import com.gomonth.dto.UserDTO;
+import com.gomonth.service.UserService;
+
+import jakarta.servlet.http.HttpSession; 
 
 @Controller
 public class MainController {
     @Autowired
     private PlaceService placeService;
 
+    @Autowired
+    private UserService userService;
+    
     @GetMapping("/")
     public String index() {
         return "index";
@@ -71,12 +80,37 @@ public class MainController {
     }
 
     @GetMapping("/login")
-    public String login() {
+    public String loginPage() {
         return "login";
     }
 
+    @PostMapping("/login")
+    public String loginProcess(@RequestParam("userId") String userId, 
+                               @RequestParam("userPw") String userPw,
+                               HttpSession session, 
+                               Model model) {
+    
+        UserDTO user = userService.login(userId, userPw);
+
+        if (user != null) {
+            session.setAttribute("loginUser", user);
+            return "redirect:/"; 
+        } else {
+            model.addAttribute("error", "아이디 또는 비밀번호가 일치하지 않습니다.");
+            return "login";
+        }
+    }
+
     @GetMapping("/join")
-    public String join() {
+    public String joinPage() {
         return "join";
+    }
+
+    @PostMapping("/join")
+    public String joinProcess(UserDTO user) {
+        if(user.getUserName() == null) user.setUserName(user.getUserId());
+        
+        userService.register(user);
+        return "redirect:/login"; 
     }
 }
