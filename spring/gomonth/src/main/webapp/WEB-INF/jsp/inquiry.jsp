@@ -14,33 +14,39 @@
 </head>
 <body class="bg-light">
 
-    <header style="background-color: #111;">
+    <header style="background-color: #111; position: fixed; width: 100%; top: 0; z-index: 1000;">
         <%@ include file="nav.jsp" %>
     </header>
 
-    <div class="container inquiry-container">
-        <div class="inquiry-card card p-4 p-md-5">
-            <div class="d-flex justify-content-between align-items-center mb-5">
-                <h2 class="fw-bold mb-0">
-                    <i class="fa-solid fa-comments me-2 text-primary"></i>
-                    ${sessionScope.loginUser.role == 'ADMIN' ? '관리자 문의 센터' : '고객 센터'}
-                </h2>
-                <span class="text-muted small">홈 > 고객지원</span>
+    <div class="container inquiry-wrapper">
+        <div class="inquiry-main-card card">
+            
+            <div class="inq-header-section text-center">
+                <h1 class="display-4 fw-bold mb-3">
+                    ${sessionScope.loginUser.role == 'ADMIN' ? 'Management Center' : 'Customer Support'}
+                </h1>
+                <p class="text-muted lead">
+                    ${sessionScope.loginUser.role == 'ADMIN' ? '모든 사용자의 문의 내역을 관리하고 답변합니다.' : '궁금하신 점을 남겨주시면 정성껏 답변해 드립니다.'}
+                </p>
             </div>
 
             <c:if test="${sessionScope.loginUser.role != 'ADMIN'}">
-                <div class="inquiry-form-section shadow-sm">
-                    <h5 class="fw-bold mb-3">새 문의하기</h5>
+                <div class="inquiry-form-card shadow-sm">
+                    <h4 class="fw-bold mb-4"><i class="fa-solid fa-pen-to-square me-2"></i>새 문의 작성</h4>
                     <form action="<%=cpath%>/inquiry/insert" method="post">
-                        <input type="text" name="title" class="form-control mb-3" placeholder="제목을 입력하세요" required>
-                        <textarea name="content" class="form-control mb-3" rows="4" placeholder="문의 내용을 상세히 작성해주세요" required></textarea>
-                        <button type="submit" class="btn btn-dark w-100 py-3 fw-bold">문의 등록</button>
+                        <input type="text" name="title" class="form-control form-control-lg border-0 bg-white mb-3 shadow-sm" placeholder="제목을 입력하세요" required>
+                        <textarea name="content" class="form-control border-0 bg-white mb-4 shadow-sm" rows="6" placeholder="내용을 상세히 입력해 주세요" required></textarea>
+                        <button type="submit" class="btn btn-dark btn-lg w-100 py-3 fw-bold rounded-pill">등록하기</button>
                     </form>
                 </div>
             </c:if>
 
             <div class="inq-list-container">
-                <h4 class="fw-bold mb-4">내역 리스트</h4>
+                <h4 class="fw-bold mb-4">
+                    <i class="fa-solid fa-list-ul me-2"></i>
+                    ${sessionScope.loginUser.role == 'ADMIN' ? '전체 문의 데이터' : '나의 문의 기록'}
+                </h4>
+                
                 <div class="accordion accordion-flush" id="inquiryAccordion">
                     <c:forEach var="inq" items="${myInqList}">
                         <div class="accordion-item">
@@ -58,14 +64,17 @@
                             <div id="collapse${inq.inqId}" class="accordion-collapse collapse" data-bs-parent="#inquiryAccordion">
                                 <div class="accordion-body inq-content-box">
                                     <div class="mb-5">
-                                        <label class="text-muted small fw-bold mb-2 d-block">CONTENT</label>
-                                        <div class="fs-5">${inq.content}</div>
-                                        <div class="text-muted mt-3 small"><fmt:formatDate value="${inq.createdAt}" pattern="yyyy-MM-dd HH:mm"/></div>
+                                        <label class="text-muted small fw-bold text-uppercase mb-2 d-block">Question</label>
+                                        <div class="fs-5 text-dark">${inq.content}</div>
+                                        <div class="text-muted mt-3 small">
+                                            <i class="fa-regular fa-clock me-1"></i> 
+                                            <fmt:formatDate value="${inq.createdAt}" pattern="yyyy-MM-dd HH:mm"/>
+                                        </div>
                                     </div>
 
                                     <c:if test="${not empty inq.ansContent}">
                                         <div class="admin-answer-zone">
-                                            <h6 class="fw-bold text-primary mb-3">관리자 답변</h6>
+                                            <h6 class="fw-bold text-primary mb-3"><i class="fa-solid fa-comment-dots me-2"></i>GO-MONTH Answer</h6>
                                             <div class="fs-5">${inq.ansContent}</div>
                                             <div class="text-muted mt-3 small">답변일: <fmt:formatDate value="${inq.answeredAt}" pattern="yyyy-MM-dd HH:mm"/></div>
                                         </div>
@@ -73,7 +82,7 @@
 
                                     <c:if test="${sessionScope.loginUser.role == 'ADMIN'}">
                                         <div class="mt-5 pt-4 border-top">
-                                            <textarea id="replyText${inq.inqId}" class="form-control border-0 bg-light p-4 mb-3" rows="4">${inq.ansContent}</textarea>
+                                            <textarea id="replyText${inq.inqId}" class="form-control border-0 bg-light p-4 mb-3" rows="4" placeholder="답변을 입력하세요">${inq.ansContent}</textarea>
                                             <div class="text-end">
                                                 <button class="btn btn-primary px-5 py-2 fw-bold rounded-pill" onclick="saveReply(${inq.inqId})">답변 저장</button>
                                             </div>
@@ -82,15 +91,19 @@
 
                                     <c:if test="${sessionScope.loginUser.userId == inq.userId && inq.status == '접수'}">
                                         <div class="text-end mt-4">
-                                            <button class="btn btn-link text-muted me-2" onclick="openEditModal(${inq.inqId}, '${inq.title}', '${inq.content}')">수정</button>
-                                            <button class="btn btn-link text-danger" onclick="deleteInq(${inq.inqId})">삭제</button>
+                                            <button class="btn btn-outline-secondary btn-sm px-3 rounded-pill me-2" onclick="openEditModal(${inq.inqId}, '${inq.title}', '${inq.content}')">수정</button>
+                                            <button class="btn btn-outline-danger btn-sm px-3 rounded-pill" onclick="deleteInq(${inq.inqId})">삭제</button>
                                         </div>
                                     </c:if>
                                 </div>
                             </div>
                         </div>
                     </c:forEach>
-                    <c:if test="${empty myInqList}"><div class="text-center py-5">내역이 없습니다.</div></c:if>
+                    <c:if test="${empty myInqList}">
+                        <div class="text-center py-5">
+                            <p class="text-muted">내역이 존재하지 않습니다.</p>
+                        </div>
+                    </c:if>
                 </div>
             </div>
         </div>
@@ -98,16 +111,16 @@
 
     <div class="modal fade" id="editModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content border-0 shadow-lg" style="border-radius: 20px;">
-                <div class="modal-header border-0 pb-0"><h5 class="fw-bold">문의 수정</h5></div>
-                <div class="modal-body p-4">
+            <div class="modal-content border-0 shadow-lg" style="border-radius: 25px;">
+                <div class="modal-body p-5">
+                    <h4 class="fw-bold mb-4">문의 수정하기</h4>
                     <input type="hidden" id="editInqId">
                     <input type="text" id="editTitle" class="form-control mb-3 p-3 bg-light border-0" placeholder="제목">
                     <textarea id="editContent" class="form-control p-3 bg-light border-0" rows="5" placeholder="내용"></textarea>
-                </div>
-                <div class="modal-footer border-0 pt-0">
-                    <button class="btn btn-dark px-4" onclick="updateInq()">수정 완료</button>
-                    <button class="btn btn-light px-4" data-bs-dismiss="modal">취소</button>
+                    <div class="mt-4 d-flex gap-2">
+                        <button class="btn btn-dark w-100 py-3 fw-bold rounded-pill" onclick="updateInq()">수정완료</button>
+                        <button class="btn btn-light w-100 py-3 fw-bold rounded-pill" data-bs-dismiss="modal">취소</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -116,15 +129,13 @@
     <script>
         function saveReply(id) {
             const reply = $("#replyText" + id).val();
-            if(!reply) return alert("답변을 입력하세요.");
+            if(!reply) return alert("내용을 입력하세요.");
             $.post("<%=cpath%>/inquiry/answer", { inqId: id, reply: reply }, function(res) {
-                if(res === "success") location.reload();
+                if(res === "success") { alert("성공적으로 저장되었습니다."); location.reload(); }
             });
         }
         function openEditModal(id, title, content) {
-            $("#editInqId").val(id);
-            $("#editTitle").val(title);
-            $("#editContent").val(content);
+            $("#editInqId").val(id); $("#editTitle").val(title); $("#editContent").val(content);
             new bootstrap.Modal(document.getElementById('editModal')).show();
         }
         function updateInq() {

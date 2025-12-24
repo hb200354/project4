@@ -758,70 +758,69 @@ nav {
 .fw-800 { font-weight: 800; }
 
 /* =================================================
-   문의하기 페이지
+   Inquiry Page - Ultra Luxury Vertical Layout
 ================================================= */
-.inquiry-container {
-    padding-top: 120px; /* 네비게이션 높이 고려 */
-    padding-bottom: 80px;
-    max-width: 900px;
+.inquiry-wrapper {
+    padding-top: 150px;
+    padding-bottom: 150px; /* 세로 여백 대폭 확장 */
+    min-height: 100vh;
+    background-color: #fcfcfc;
 }
 
-.inquiry-card {
+.inquiry-main-card {
     background: #ffffff;
-    border-radius: 20px;
+    border-radius: 40px;
     border: none;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.08);
+    padding: 80px !important; /* 내부 여백 확장 */
 }
 
-.inquiry-form-section {
+.inq-header-section {
+    margin-bottom: 80px;
+}
+
+.inquiry-form-card {
     background: #f8f9fa;
-    border-radius: 15px;
-    padding: 25px;
-    margin-bottom: 40px;
-}
-
-.inquiry-form-section input, 
-.inquiry-form-section textarea {
-    border: 1px solid #eee;
-    padding: 15px;
-    border-radius: 10px;
+    border-radius: 25px;
+    padding: 50px;
+    margin-bottom: 100px;
 }
 
 .accordion-item {
-    border: 1px solid #f0f0f0 !important;
-    border-radius: 12px !important;
+    border: none !important;
+    border-bottom: 1px solid #f0f0f0 !important;
     margin-bottom: 15px;
-    overflow: hidden;
 }
 
 .accordion-button {
-    font-weight: 600;
-    padding: 20px;
+    padding: 40px 20px !important; /* 리스트 클릭 영역을 더 길게 */
+    font-size: 1.2rem;
+    transition: all 0.3s;
 }
 
 .accordion-button:not(.collapsed) {
-    background-color: #fff;
-    color: var(--gm-main-color);
-    box-shadow: none;
+    background-color: transparent !important;
+    color: #000 !important;
+    font-weight: 800;
 }
 
-.admin-reply-box {
-    background-color: #f1f6ff;
-    border-left: 4px solid #007bff;
-    padding: 20px;
-    border-radius: 0 10px 10px 0;
-    margin-top: 15px;
+.inq-content-box {
+    padding: 50px 30px;
+    line-height: 2.0;
 }
 
-.status-badge {
-    font-size: 0.75rem;
-    padding: 5px 12px;
+.admin-answer-zone {
+    background: #f1f6ff;
+    border-radius: 25px;
+    padding: 45px;
+    margin-top: 40px;
+    border-left: 8px solid #007bff;
+}
+
+.status-badge-custom {
+    padding: 8px 20px;
     border-radius: 50px;
-    font-weight: 700;
-    margin-right: 10px;
-}
-
-.inq-date {
     font-size: 0.85rem;
-    color: #999;
+    font-weight: 600;
+    margin-right: 20px;
 }

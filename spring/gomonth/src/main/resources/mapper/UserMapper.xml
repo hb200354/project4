@@ -9,14 +9,14 @@
             user_id AS userId, 
             user_pw AS userPw, 
             user_name AS userName, 
-            email
-        FROM USERS
+            email,
+            role  FROM USERS
         WHERE user_id = #{userId} AND user_pw = #{userPw}
     </select>
 
     <insert id="insertUser" parameterType="com.gomonth.dto.UserDTO">
-        INSERT INTO USERS (user_id, user_pw, user_name, email)
-        VALUES (#{userId}, #{userPw}, #{userName}, #{email})
+        INSERT INTO USERS (user_id, user_pw, user_name, email, role)
+        VALUES (#{userId}, #{userPw}, #{userName}, #{email}, 'USER')
     </insert>
 
     <select id="getFavorites" resultType="com.gomonth.dto.PlaceDTO">

@@ -127,9 +127,9 @@ public class MainController {
         if (loginUser == null) return "redirect:/login";
 
         List<InquiriesDTO> list;
-        // [수정] 관리자(ADMIN)면 전체 목록, 일반 유저면 본인 목록만 조회
+        // 관리자 권한 체크: ADMIN이면 전체 목록을 가져옴
         if ("ADMIN".equals(loginUser.getRole())) {
-            list = service.getAllInquiries(); 
+            list = service.getAllInquiries();
         } else {
             list = service.getMyInquiries(loginUser.getUserId());
         }
@@ -138,35 +138,14 @@ public class MainController {
         return "inquiry"; 
     }
 
-    // 사용자: 문의 등록
     @PostMapping("/inquiry/insert")
-    public String insertInquiry(InquiriesDTO inq, HttpSession session) {
+    public String insertInquiry(InquiriesDTO ins, HttpSession session) {
         UserDTO loginUser = (UserDTO) session.getAttribute("loginUser");
-        if (loginUser != null) {
-            inq.setUserId(loginUser.getUserId());
-            service.registerInquiry(inq);
-        }
-        return "redirect:/inquiry";
-    }
-
-    // 사용자: 문의 수정
-    @PostMapping("/inquiry/update")
-    @ResponseBody
-    public String updateInquiry(InquiriesDTO inq, HttpSession session) {
-        UserDTO loginUser = (UserDTO) session.getAttribute("loginUser");
-        if (loginUser == null) return "fail";
+        if (loginUser == null) return "redirect:/login";
         
-        inq.setUserId(loginUser.getUserId());
-        return service.updateInquiry(inq) ? "success" : "fail";
-    }
-
-    // 사용자: 문의 삭제
-    @PostMapping("/inquiry/delete")
-    @ResponseBody
-    public String deleteInquiry(@RequestParam("inqId") int inqId, HttpSession session) {
-        UserDTO loginUser = (UserDTO) session.getAttribute("loginUser");
-        if (loginUser == null) return "fail";
-        return service.deleteInquiry(inqId, loginUser.getUserId()) ? "success" : "fail";
+        ins.setUserId(loginUser.getUserId());
+        service.registerInquiry(ins);
+        return "redirect:/inquiry";
     }
 
     @PostMapping("/inquiry/answer")
@@ -175,11 +154,27 @@ public class MainController {
                                 @RequestParam("reply") String reply, 
                                 HttpSession session) {
         UserDTO loginUser = (UserDTO) session.getAttribute("loginUser");
-        // [보안] 관리자만 답변 가능하도록 체크
         if (loginUser != null && "ADMIN".equals(loginUser.getRole())) {
             return service.answer(inqId, reply) ? "success" : "fail";
         }
         return "no_auth";
+    }
+
+    @PostMapping("/inquiry/update")
+    @ResponseBody
+    public String updateInquiry(InquiriesDTO upt, HttpSession session) {
+        UserDTO loginUser = (UserDTO) session.getAttribute("loginUser");
+        if (loginUser == null) return "fail";
+        upt.setUserId(loginUser.getUserId());
+        return service.updateInquiry(upt) ? "success" : "fail";
+    }
+
+    @PostMapping("/inquiry/delete")
+    @ResponseBody
+    public String deleteInquiry(@RequestParam("inqId") int inqId, HttpSession session) {
+        UserDTO loginUser = (UserDTO) session.getAttribute("loginUser");
+        if (loginUser == null) return "fail";
+        return service.deleteInquiry(inqId, loginUser.getUserId()) ? "success" : "fail";
     }
 
     @GetMapping("/login")
