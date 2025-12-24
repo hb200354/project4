@@ -25,24 +25,31 @@
 
         <ul class="navbar-nav ms-auto align-items-center">
             <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/inquiry">문의</a>
+                <a class="nav-link text-white px-2" href="${pageContext.request.contextPath}/inquiry" title="문의하기">
+                    <i class="fa-regular fa-envelope fa-lg"></i>
+                </a>
             </li>
-            
+
             <c:choose>
                 <c:when test="${empty sessionScope.loginUser}">
                     <li class="nav-item ms-2">
-                        <a class="btn btn-outline-primary btn-login" href="${pageContext.request.contextPath}/login">
-                            로그인
-                        </a>
+                        <a class="btn btn-outline-primary btn-login" href="${pageContext.request.contextPath}/login">로그인</a>
                     </li>
                 </c:when>
                 <c:otherwise>
-                    <li class="nav-item ms-3">
-                        <span class="text-white fw-bold">${sessionScope.loginUser.userName}님</span>
-                    </li>
                     <li class="nav-item ms-2">
-                        <a class="btn btn-outline-danger btn-sm" href="${pageContext.request.contextPath}/logout">
-                            로그아웃
+                        <a class="nav-link px-2" href="${pageContext.request.contextPath}/favorites" title="찜 목록">
+                            <i class="fa-solid fa-heart fa-lg text-danger"></i>
+                        </a>
+                    </li>
+                    
+                    <li class="nav-item ms-3">
+                        <span class="text-white small fw-bold">${sessionScope.loginUser.userName}님</span>
+                    </li>
+                    
+                    <li class="nav-item ms-2">
+                        <a class="nav-link text-white px-2" href="${pageContext.request.contextPath}/logout" title="로그아웃">
+                            <i class="fa-solid fa-right-from-bracket"></i>
                         </a>
                     </li>
                 </c:otherwise>

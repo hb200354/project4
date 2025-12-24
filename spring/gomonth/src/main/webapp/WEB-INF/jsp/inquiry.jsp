@@ -1,139 +1,148 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-    <% String cpath=request.getContextPath(); %>
-        <!DOCTYPE html>
-        <html lang="ko">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<% String cpath = request.getContextPath(); %>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>문의관리 | GO-MONTH</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<%=cpath%>/css/styles.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body class="bg-light">
 
-        <head>
-            <meta charset="UTF-8">
-            <title>문의하기 | GO-MONTH</title>
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-
-            <!-- Bootstrap -->
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-            <!-- 공통 CSS -->
-            <link href="<%=cpath%>/css/styles.css" rel="stylesheet">
-        </head>
-
-        <body>
-
-    <%@ include file="header.jsp" %>
+    <header style="background-color: #111;">
         <%@ include file="nav.jsp" %>
+    </header>
 
+    <div class="container inquiry-container">
+        <div class="inquiry-card card p-4 p-md-5">
+            <div class="d-flex justify-content-between align-items-center mb-5">
+                <h2 class="fw-bold mb-0">
+                    <i class="fa-solid fa-comments me-2 text-primary"></i>
+                    ${sessionScope.loginUser.role == 'ADMIN' ? '관리자 문의 센터' : '고객 센터'}
+                </h2>
+                <span class="text-muted small">홈 > 고객지원</span>
+            </div>
 
-                <!-- =======================
- 페이지 헤더
-======================= -->
-                <header class="py-5 bg-light border-bottom mb-4 text-center">
-                    <div class="container">
-                        <h1 class="fw-bolder">문의하기</h1>
-                        <p class="lead mb-0">서비스 이용 중 궁금한 점을 남겨주세요</p>
-                    </div>
-                </header>
-
-                <div class="container">
-                    <div class="row">
-
-                        <!-- ===================
-     문의 작성
-    =================== -->
-                        <div class="col-lg-8">
-
-                            <div class="card mb-4">
-                                <div class="card-header">문의 작성</div>
-                                <div class="card-body">
-
-                                    <form>
-                                        <div class="mb-3">
-                                            <label class="form-label">제목</label>
-                                            <input type="text" class="form-control" placeholder="문의 제목을 입력하세요">
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label class="form-label">문의 유형</label>
-                                            <select class="form-control">
-                                                <option>일반 문의</option>
-                                                <option>계정/로그인</option>
-                                                <option>건의 사항</option>
-                                                <option>오류 제보</option>
-                                            </select>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label class="form-label">문의 내용</label>
-                                            <textarea rows="6" class="form-control"
-                                                placeholder="문의 내용을 입력하세요"></textarea>
-                                        </div>
-
-                                        <button type="submit" class="btn btn-primary">등록</button>
-                                        <button type="reset" class="btn btn-secondary">초기화</button>
-
-                                        <p class="small text-muted mt-3 mb-0">
-                                            ※ 문의 기능은 추후 DB 연동을 통해 처리될 예정입니다.
-                                        </p>
-                                    </form>
-
-                                </div>
-                            </div>
-
-                            <!-- ===================
-       문의 내역 (더미)
-      =================== -->
-                            <div class="card mb-4">
-                                <div class="card-header">내 문의 내역</div>
-                                <div class="card-body">
-
-                                    <div class="border rounded p-3 mb-3">
-                                        <div class="fw-bold">[계정/로그인] 로그인이 안 됩니다</div>
-                                        <div class="small text-muted">2025-12-19</div>
-                                        <div class="mt-2">비밀번호 입력 후 로그인 화면에서 멈춥니다.</div>
-                                        <div class="mt-2 small"><b>답변:</b> (대기중)</div>
-                                    </div>
-
-                                    <div class="border rounded p-3">
-                                        <div class="fw-bold">[오류 제보] 봄 페이지 이미지 오류</div>
-                                        <div class="small text-muted">2025-12-18</div>
-                                        <div class="mt-2">spring 페이지에서 이미지가 보이지 않습니다.</div>
-                                        <div class="mt-2 small"><b>답변:</b> 경로 확인 부탁드립니다.</div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <!-- ===================
-     사이드
-    =================== -->
-                        <div class="col-lg-4">
-
-                            <div class="card mb-4">
-                                <div class="card-header">안내</div>
-                                <div class="card-body">
-                                    <ul class="mb-0">
-                                        <li>문의는 로그인 후 이용 가능합니다.</li>
-                                        <li>답변은 관리자 확인 후 등록됩니다.</li>
-                                        <li>문의 내역은 마이페이지에서 확인 가능합니다.</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="card mb-4">
-                                <div class="card-header">바로가기</div>
-                                <div class="card-body d-grid gap-2">
-                                    <a class="btn btn-primary" href="<%=cpath%>/favorites">내 찜 목록</a>
-                                    <a class="btn btn-outline-secondary" href="<%=cpath%>/">메인으로</a>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
+            <c:if test="${sessionScope.loginUser.role != 'ADMIN'}">
+                <div class="inquiry-form-section shadow-sm">
+                    <h5 class="fw-bold mb-3">새 문의하기</h5>
+                    <form action="<%=cpath%>/inquiry/insert" method="post">
+                        <input type="text" name="title" class="form-control mb-3" placeholder="제목을 입력하세요" required>
+                        <textarea name="content" class="form-control mb-3" rows="4" placeholder="문의 내용을 상세히 작성해주세요" required></textarea>
+                        <button type="submit" class="btn btn-dark w-100 py-3 fw-bold">문의 등록</button>
+                    </form>
                 </div>
+            </c:if>
 
-                <%@ include file="footer.jsp" %>
+            <div class="accordion accordion-flush" id="inquiryAccordion">
+                <h5 class="fw-bold mb-4">
+                    ${sessionScope.loginUser.role == 'ADMIN' ? '전체 문의 내역' : '나의 문의 기록'}
+                </h5>
+                
+                <c:forEach var="inq" items="${myInqList}">
+                    <div class="accordion-item shadow-sm">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${inq.inqId}">
+                                <span class="status-badge ${inq.status == '접수' ? 'bg-warning text-dark' : 'bg-primary text-white'}">${inq.status}</span>
+                                <c:if test="${sessionScope.loginUser.role == 'ADMIN'}">
+                                    <span class="text-primary fw-bold me-2">[${inq.userId}]</span>
+                                </c:if>
+                                <span class="text-dark">${inq.title}</span>
+                            </button>
+                        </h2>
+                        <div id="collapse${inq.inqId}" class="accordion-collapse collapse" data-bs-parent="#inquiryAccordion">
+                            <div class="accordion-body p-4 bg-white">
+                                <div class="mb-4">
+                                    <p class="text-dark fs-5 mb-2">${inq.content}</p>
+                                    <div class="inq-date"><i class="fa-regular fa-clock me-1"></i><fmt:formatDate value="${inq.createdAt}" pattern="yyyy-MM-dd HH:mm"/></div>
+                                </div>
 
-                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        </body>
+                                <c:if test="${not empty inq.ansContent}">
+                                    <div class="admin-reply-box">
+                                        <h6 class="fw-bold mb-2 text-primary"><i class="fa-solid fa-circle-check me-2"></i>운영자 답변</h6>
+                                        <p class="mb-2 text-dark">${inq.ansContent}</p>
+                                        <div class="inq-date text-muted" style="font-size: 0.75rem;">답변일: <fmt:formatDate value="${inq.answeredAt}" pattern="yyyy-MM-dd HH:mm"/></div>
+                                    </div>
+                                </c:if>
 
-        </html>
+                                <c:if test="${sessionScope.loginUser.role == 'ADMIN'}">
+                                    <div class="mt-4 pt-3 border-top">
+                                        <label class="small fw-bold mb-2">관리자 답변 작성</label>
+                                        <textarea id="replyText${inq.inqId}" class="form-control mb-2" rows="3">${inq.ansContent}</textarea>
+                                        <div class="text-end">
+                                            <button class="btn btn-primary btn-sm px-4" onclick="saveReply(${inq.inqId})">답변 저장</button>
+                                        </div>
+                                    </div>
+                                </c:if>
+
+                                <c:if test="${sessionScope.loginUser.userId == inq.userId && inq.status == '접수'}">
+                                    <div class="text-end mt-3">
+                                        <button class="btn btn-link text-muted text-decoration-none btn-sm me-2" onclick="openEditModal(${inq.inqId}, '${inq.title}', '${inq.content}')">수정</button>
+                                        <button class="btn btn-link text-danger text-decoration-none btn-sm" onclick="deleteInq(${inq.inqId})">삭제</button>
+                                    </div>
+                                </c:if>
+                            </div>
+                        </div>
+                    </div>
+                </c:forEach>
+                
+                <c:if test="${empty myInqList}">
+                    <div class="text-center py-5 text-muted">문의 내역이 없습니다.</div>
+                </c:if>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg" style="border-radius: 20px;">
+                <div class="modal-header border-0 pb-0"><h5 class="fw-bold">문의 수정</h5></div>
+                <div class="modal-body p-4">
+                    <input type="hidden" id="editInqId">
+                    <input type="text" id="editTitle" class="form-control mb-3 p-3 bg-light border-0" placeholder="제목">
+                    <textarea id="editContent" class="form-control p-3 bg-light border-0" rows="5" placeholder="내용"></textarea>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button class="btn btn-dark px-4" onclick="updateInq()">수정 완료</button>
+                    <button class="btn btn-light px-4" data-bs-dismiss="modal">취소</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function saveReply(id) {
+            const reply = $("#replyText" + id).val();
+            if(!reply) return alert("답변을 입력하세요.");
+            $.post("<%=cpath%>/inquiry/answer", { inqId: id, reply: reply }, function(res) {
+                if(res === "success") location.reload();
+            });
+        }
+        function openEditModal(id, title, content) {
+            $("#editInqId").val(id);
+            $("#editTitle").val(title);
+            $("#editContent").val(content);
+            new bootstrap.Modal(document.getElementById('editModal')).show();
+        }
+        function updateInq() {
+            const data = { inqId: $("#editInqId").val(), title: $("#editTitle").val(), content: $("#editContent").val() };
+            $.post("<%=cpath%>/inquiry/update", data, function(res) {
+                if(res === "success") location.reload();
+            });
+        }
+        function deleteInq(id) {
+            if(confirm("정말 삭제하시겠습니까?")) {
+                $.post("<%=cpath%>/inquiry/delete", { inqId: id }, function(res) {
+                    if(res === "success") location.reload();
+                });
+            }
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

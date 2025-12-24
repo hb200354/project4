@@ -756,3 +756,72 @@ nav {
 
 /* 큰 글씨 강조 */
 .fw-800 { font-weight: 800; }
+
+/* =================================================
+   문의하기 페이지
+================================================= */
+.inquiry-container {
+    padding-top: 120px; /* 네비게이션 높이 고려 */
+    padding-bottom: 80px;
+    max-width: 900px;
+}
+
+.inquiry-card {
+    background: #ffffff;
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.inquiry-form-section {
+    background: #f8f9fa;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 40px;
+}
+
+.inquiry-form-section input, 
+.inquiry-form-section textarea {
+    border: 1px solid #eee;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.accordion-item {
+    border: 1px solid #f0f0f0 !important;
+    border-radius: 12px !important;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.accordion-button {
+    font-weight: 600;
+    padding: 20px;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: #fff;
+    color: var(--gm-main-color);
+    box-shadow: none;
+}
+
+.admin-reply-box {
+    background-color: #f1f6ff;
+    border-left: 4px solid #007bff;
+    padding: 20px;
+    border-radius: 0 10px 10px 0;
+    margin-top: 15px;
+}
+
+.status-badge {
+    font-size: 0.75rem;
+    padding: 5px 12px;
+    border-radius: 50px;
+    font-weight: 700;
+    margin-right: 10px;
+}
+
+.inq-date {
+    font-size: 0.85rem;
+    color: #999;
+}

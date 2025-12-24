@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gomonth.dao.FavoriteDAO">
+
+    <select id="getFavoritesByUserId" resultType="com.gomonth.dto.FavoriteDTO">
+        SELECT 
+            f.fav_id AS favId,
+            f.place_id AS placeId,
+            p.title,
+            p.SEASON_NOTE AS summary, 
+            ps.SEASON_TYPE AS seasonType, p.LIST_IMG AS listImg,
+            f.created_at AS createdAt
+        FROM FAVORITES f
+        JOIN PLACES p ON f.place_id = p.PLACE_ID
+        JOIN PLACE_SEASONS ps ON p.PLACE_ID = ps.PLACE_ID WHERE f.user_id = #{userId}
+        ORDER BY f.created_at DESC
+    </select>
+
+    <select id="isFavorite" resultType="int">
+        SELECT COUNT(*) 
+        FROM FAVORITES 
+        WHERE PLACE_ID = #{placeId} AND USER_ID = #{userId}
+    </select>
+    
+    <insert id="insertFavorite">
+        INSERT INTO FAVORITES (FAV_ID, USER_ID, PLACE_ID, CREATED_AT)
+        VALUES (FAV_SEQ.NEXTVAL, #{userId}, #{placeId}, SYSDATE)
+    </insert>
+    
+    <delete id="deleteFavorite">
+        DELETE FROM FAVORITES 
+        WHERE user_id = #{userId} AND place_id = #{placeId}
+    </delete>
+
+</mapper>

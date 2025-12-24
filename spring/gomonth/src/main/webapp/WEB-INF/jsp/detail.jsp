@@ -2,9 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% 
     String cpath = request.getContextPath(); 
-    // 이제 id는 파라미터가 아닌 DB 데이터에서 가져오는 것을 권장하지만, 
-    // 이미지 경로 하위 호환성을 위해 유지합니다.
-    String id = request.getParameter("id"); 
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -14,6 +11,18 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="<%=cpath%>/css/styles.css?v=<%=System.currentTimeMillis()%>" rel="stylesheet">
+    <style>
+        /* 하트 버튼 커스텀 스타일 */
+        .btn-wish-heart {
+            background: none;
+            border: none;
+            transition: transform 0.2s ease;
+            cursor: pointer;
+        }
+        .btn-wish-heart:hover { transform: scale(1.2); }
+        .btn-wish-heart .fa-heart { font-size: 2.5rem; color: #ddd; }
+        .btn-wish-heart.active .fa-heart { color: #e74c3c; }
+    </style>
 </head>
 <body>
 <%@ include file="header.jsp" %>
@@ -24,11 +33,9 @@
          onerror="this.src='<%=cpath%>/assets/images/default_banner.jpg'">
 </div>
 
-<%-- 상단 정보바 영역 수정 --%>
 <div class="date-info-bar">
     <div>
         <span class="date-tag">BEST SEASON</span>
-        <%-- tips 리스트의 마지막 content를 출력 --%>
         <c:forEach var="tip" items="${place.tips}" varStatus="status">
             <c:if test="${status.last}">
                 <span id="placeSeason" class="fw-bold fs-5">${tip.content}</span>
@@ -42,10 +49,8 @@
     <div class="row">
         <div class="col-lg-8">
             <h1 id="placeTitle" class="mag-title">${place.title}</h1>
-  
             <div id="pointsList">
                 <c:forEach var="tip" items="${place.tips}" varStatus="status">
-                    <%-- 마지막 데이터(상단으로 보낸 것)를 제외한 나머지만 리스트에 표시 --%>
                     <c:if test="${!status.last}">
                         <div class="guide-item">
                             <span class="guide-label">Feature Point 0${status.count}</span>
@@ -57,16 +62,32 @@
         </div>
 
         <div class="col-lg-4 ps-lg-5">
-            <div class="side-card">
+            <div class="side-card text-center">
                 <p class="fw-bold small mb-3 text-muted" style="letter-spacing:2px;">SNAPSHOT</p>
-                <img src="<%=cpath%>/assets/images/${place.seasonType}/${place.listImg}" class="snapshot-img" 
+                <img src="<%=cpath%>/assets/images/${place.seasonType}/${place.listImg}" class="snapshot-img mb-4" 
                      onerror="this.src='<%=cpath%>/assets/images/default_list.jpg'">
   
-                <button id="wishBtn" class="btn-luxury-wish mb-4">
-                    SAVE TO MY TRIP
-                </button>
+                <div class="wish-section mb-4">
+                    <c:choose>
+                        <c:when test="${not empty sessionScope.loginUser}">
+                            <button id="wishBtn" class="btn-wish-heart ${isFavorite ? 'active' : ''}" 
+                                    onclick="toggleWishlist('${place.placeId}')" title="찜하기">
+                                <i class="fa-solid fa-heart"></i>
+                            </button>
+                            <p class="small text-muted mt-2" id="wishText">
+                                ${isFavorite ? '찜한 여행지입니다' : '이 여행지를 저장할까요?'}
+                            </p>
+                        </c:when>
+                        <c:otherwise>
+                            <button class="btn-wish-heart" onclick="location.href='<%=cpath%>/login'" title="로그인 후 이용">
+                                <i class="fa-solid fa-heart"></i>
+                            </button>
+                            <p class="small text-muted mt-2">로그인 후 찜할 수 있습니다.</p>
+                        </c:otherwise>
+                    </c:choose>
+                </div>
                 
-                <div class="border-top pt-4">
+                <div class="border-top pt-4 text-start">
                     <a href="javascript:history.back();" class="text-dark fw-bold text-decoration-none small">
                         &larr; RETURN TO LIST
                     </a>
@@ -76,17 +97,33 @@
     </div>
 </main>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    // 위시리스트 버튼 토글 로직만 유지
-    window.onload = function() {
+    function toggleWishlist(placeId) {
         const wishBtn = document.getElementById('wishBtn');
-        if(wishBtn) {
-            wishBtn.onclick = function() {
-                const isActive = this.classList.toggle('active');
-                this.innerText = isActive ? 'SAVED' : 'SAVE TO MY TRIP';
-            };
-        }
-    };
+        const wishText = document.getElementById('wishText');
+        const isActive = wishBtn.classList.contains('active');
+        
+        // 이미 active 상태면 삭제(delete), 아니면 추가(add)
+        const url = isActive ? '<%=cpath%>/favorites/delete' : '<%=cpath%>/favorites/add';
+        
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: { placeId: placeId },
+            success: function(response) {
+                if(response === "success") {
+                    const nowActive = wishBtn.classList.toggle('active');
+                    wishText.innerText = nowActive ? '찜한 여행지입니다' : '이 여행지를 저장할까요?';
+                } else {
+                    alert("처리 중 오류가 발생했습니다.");
+                }
+            },
+            error: function() {
+                alert("서버 통신 오류가 발생했습니다.");
+            }
+        });
+    }
 </script>
 </body>
 </html>

@@ -19,4 +19,16 @@
         VALUES (#{userId}, #{userPw}, #{userName}, #{email})
     </insert>
 
+    <select id="getFavorites" resultType="com.gomonth.dto.PlaceDTO">
+        SELECT 
+            p.id, 
+            p.title, 
+            p.summary, 
+            f.created_at AS createdAt
+        FROM PLACES p
+        JOIN FAVORITES f ON p.id = f.place_id
+        WHERE f.user_id = #{userId}
+        ORDER BY f.created_at DESC
+    </select>
+
 </mapper>
