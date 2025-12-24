@@ -40,7 +40,9 @@ public class MainController {
     }
 
     @GetMapping("/fall")
-    public String fall() {
+    public String fall(Model model) {
+        List<PlaceDTO> fallPlaces = placeService.getPlacesBySeason("fall");
+        model.addAttribute("fallPlaces", fallPlaces); 
         return "fall";
     }
 
