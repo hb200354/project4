@@ -39,61 +39,59 @@
                 </div>
             </c:if>
 
-            <div class="accordion accordion-flush" id="inquiryAccordion">
-                <h5 class="fw-bold mb-4">
-                    ${sessionScope.loginUser.role == 'ADMIN' ? '전체 문의 내역' : '나의 문의 기록'}
-                </h5>
-                
-                <c:forEach var="inq" items="${myInqList}">
-                    <div class="accordion-item shadow-sm">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${inq.inqId}">
-                                <span class="status-badge ${inq.status == '접수' ? 'bg-warning text-dark' : 'bg-primary text-white'}">${inq.status}</span>
-                                <c:if test="${sessionScope.loginUser.role == 'ADMIN'}">
-                                    <span class="text-primary fw-bold me-2">[${inq.userId}]</span>
-                                </c:if>
-                                <span class="text-dark">${inq.title}</span>
-                            </button>
-                        </h2>
-                        <div id="collapse${inq.inqId}" class="accordion-collapse collapse" data-bs-parent="#inquiryAccordion">
-                            <div class="accordion-body p-4 bg-white">
-                                <div class="mb-4">
-                                    <p class="text-dark fs-5 mb-2">${inq.content}</p>
-                                    <div class="inq-date"><i class="fa-regular fa-clock me-1"></i><fmt:formatDate value="${inq.createdAt}" pattern="yyyy-MM-dd HH:mm"/></div>
-                                </div>
-
-                                <c:if test="${not empty inq.ansContent}">
-                                    <div class="admin-reply-box">
-                                        <h6 class="fw-bold mb-2 text-primary"><i class="fa-solid fa-circle-check me-2"></i>운영자 답변</h6>
-                                        <p class="mb-2 text-dark">${inq.ansContent}</p>
-                                        <div class="inq-date text-muted" style="font-size: 0.75rem;">답변일: <fmt:formatDate value="${inq.answeredAt}" pattern="yyyy-MM-dd HH:mm"/></div>
+            <div class="inq-list-container">
+                <h4 class="fw-bold mb-4">내역 리스트</h4>
+                <div class="accordion accordion-flush" id="inquiryAccordion">
+                    <c:forEach var="inq" items="${myInqList}">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${inq.inqId}">
+                                    <span class="status-badge-custom ${inq.status == '접수' ? 'bg-warning text-dark' : 'bg-primary text-white'}">
+                                        ${inq.status}
+                                    </span>
+                                    <c:if test="${sessionScope.loginUser.role == 'ADMIN'}">
+                                        <span class="text-primary fw-bold me-2">[${inq.userId}]</span>
+                                    </c:if>
+                                    <span class="text-dark fw-bold">${inq.title}</span>
+                                </button>
+                            </h2>
+                            <div id="collapse${inq.inqId}" class="accordion-collapse collapse" data-bs-parent="#inquiryAccordion">
+                                <div class="accordion-body inq-content-box">
+                                    <div class="mb-5">
+                                        <label class="text-muted small fw-bold mb-2 d-block">CONTENT</label>
+                                        <div class="fs-5">${inq.content}</div>
+                                        <div class="text-muted mt-3 small"><fmt:formatDate value="${inq.createdAt}" pattern="yyyy-MM-dd HH:mm"/></div>
                                     </div>
-                                </c:if>
 
-                                <c:if test="${sessionScope.loginUser.role == 'ADMIN'}">
-                                    <div class="mt-4 pt-3 border-top">
-                                        <label class="small fw-bold mb-2">관리자 답변 작성</label>
-                                        <textarea id="replyText${inq.inqId}" class="form-control mb-2" rows="3">${inq.ansContent}</textarea>
-                                        <div class="text-end">
-                                            <button class="btn btn-primary btn-sm px-4" onclick="saveReply(${inq.inqId})">답변 저장</button>
+                                    <c:if test="${not empty inq.ansContent}">
+                                        <div class="admin-answer-zone">
+                                            <h6 class="fw-bold text-primary mb-3">관리자 답변</h6>
+                                            <div class="fs-5">${inq.ansContent}</div>
+                                            <div class="text-muted mt-3 small">답변일: <fmt:formatDate value="${inq.answeredAt}" pattern="yyyy-MM-dd HH:mm"/></div>
                                         </div>
-                                    </div>
-                                </c:if>
+                                    </c:if>
 
-                                <c:if test="${sessionScope.loginUser.userId == inq.userId && inq.status == '접수'}">
-                                    <div class="text-end mt-3">
-                                        <button class="btn btn-link text-muted text-decoration-none btn-sm me-2" onclick="openEditModal(${inq.inqId}, '${inq.title}', '${inq.content}')">수정</button>
-                                        <button class="btn btn-link text-danger text-decoration-none btn-sm" onclick="deleteInq(${inq.inqId})">삭제</button>
-                                    </div>
-                                </c:if>
+                                    <c:if test="${sessionScope.loginUser.role == 'ADMIN'}">
+                                        <div class="mt-5 pt-4 border-top">
+                                            <textarea id="replyText${inq.inqId}" class="form-control border-0 bg-light p-4 mb-3" rows="4">${inq.ansContent}</textarea>
+                                            <div class="text-end">
+                                                <button class="btn btn-primary px-5 py-2 fw-bold rounded-pill" onclick="saveReply(${inq.inqId})">답변 저장</button>
+                                            </div>
+                                        </div>
+                                    </c:if>
+
+                                    <c:if test="${sessionScope.loginUser.userId == inq.userId && inq.status == '접수'}">
+                                        <div class="text-end mt-4">
+                                            <button class="btn btn-link text-muted me-2" onclick="openEditModal(${inq.inqId}, '${inq.title}', '${inq.content}')">수정</button>
+                                            <button class="btn btn-link text-danger" onclick="deleteInq(${inq.inqId})">삭제</button>
+                                        </div>
+                                    </c:if>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </c:forEach>
-                
-                <c:if test="${empty myInqList}">
-                    <div class="text-center py-5 text-muted">문의 내역이 없습니다.</div>
-                </c:if>
+                    </c:forEach>
+                    <c:if test="${empty myInqList}"><div class="text-center py-5">내역이 없습니다.</div></c:if>
+                </div>
             </div>
         </div>
     </div>
