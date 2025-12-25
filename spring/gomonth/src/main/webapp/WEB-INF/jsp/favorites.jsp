@@ -74,13 +74,14 @@
                 </div>
             </div>
 
+
             <div class="col-lg-4">
                 <div class="card border-0 shadow-sm mb-4" style="border-radius:15px;">
                     <div class="card-header bg-white fw-bold py-3 border-0">바로가기</div>
                     <div class="card-body d-grid gap-2 pt-0">
                         <a class="btn btn-primary py-2 fw-bold" href="${pageContext.request.contextPath}/spring">🌸 봄 여행지</a>
                         <a class="btn btn-success py-2 fw-bold" href="${pageContext.request.contextPath}/summer">🌿 여름 여행지</a>
-                        <a class="btn py-2 fw-bold text-white" href="${pageContext.request.contextPath}/autumn" style="background-color: #fd7e14;">🍁 가을 여행지</a>
+                        <a class="btn py-2 fw-bold text-white" href="${pageContext.request.contextPath}/fall" style="background-color: #fd7e14;">🍁 가을 여행지</a>
                         <a class="btn btn-info py-2 fw-bold text-white" href="${pageContext.request.contextPath}/winter">❄️ 겨울 여행지</a>
                         <hr class="my-2">
                         <a class="btn btn-outline-secondary py-2" href="${pageContext.request.contextPath}/inquiry">문의하기</a>
